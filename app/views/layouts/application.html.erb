@@ -1,101 +1,79 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <title>Hobyle</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-   <body class="d-flex flex-column vh-100">
+    <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand p-3 text-white" href="/"><strong>Hobyle</strong></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand p-3" href="/"><strong>Hobyle</strong></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-
-            <!--< if admin_signed_in? >-->
+            <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "商品一覧", root_path, class: 'nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "会員一覧", root_path, class: 'nav-link text-white' %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to "注文履歴一覧", root_path, class: 'nav-link text-white' %>
+              <%= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
-              <%= link_to "ジャンル一覧", root_path, class: 'nav-link text-white' %>
+              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-white' %>
             </li>
-            <li><%= link_to "ログアウト", root_path, method: :delete, class: 'nav-link text-white' %>
-            </li>
-
-            <!--< elsif customer_signed_in? >-->
+            <% else %>
             <li class="nav-item">
-              <%= link_to 'マイページ', root_path, class: 'nav-link text-white' %>
+              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
-              <%= link_to "商品一覧", root_path, class: 'nav-link text-white' %>
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-white' %>
             </li>
-            <li class="nav-item">
-              <%= link_to "カート", root_path, class: 'nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", root_path, method: :delete, class: 'nav-link text-white' %>
-            </li>
-
-            <!--< else >-->
-            <li class="nav-item">
-              <%= link_to "About", root_path, class: 'nav-link text-white' %>
-            </li>
-            <li>
-              <%= link_to "商品一覧", root_path, class: 'nav-link text-white' %>
-            </li>
-            <li>
-              <%= link_to "新規登録", root_path, class: 'nav-link text-white' %>
-            </li>
-            <li>
-              <%= link_to "ログイン", root_path, class: 'nav-link text-white' %>
-            </li>
-            <!--< end >-->
+            <% end %>
+            </ul>
           </div>
         </div>
       </nav>
     </header>
-    <style>
-      header {
-        background-color: tan;
-        margin-bottom: 50px;
-      }
-    </style>
-
     <main class="mb-auto">
+      <div class="main-visual">
+        <h4>アウトドア・インドア・その他から１つずつ新着イベント羅列</h4>
+
+      </div>
     <%= yield %>
     </main>
     <footer class="text-white pt-5 pb-4">
-      <p>Have a delicious day</p>
-      < if admin_signed_in? >
-      <%= link_to "Admin Log Out", root_path, method: :delete, class: "btn btn-outline-danger btn-sm btn-block" %>
-      < else %>
-      <%= link_to "Admin Log In", root_path, class: "btn btn-outline-warning btn-sm btn-block" %>
-      < end >
-      
-      <style>
-      p {
-        text-align: center;
-      }
-
-      footer {
-        background-color: tan;
-        margin-top: 20px;
-      }
-      </style>
+            <% if admin_signed_in? %>
+      <%= link_to "Admin Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger btn-sm btn-block" %>
+      <% else %>
+      <%= link_to "Admin Log In", new_admin_session_path, class: "btn btn-outline-warning btn-sm btn-block" %>
+      <% end %>
     </footer>
   </body>
+
+  <style>
+    .main-visual {
+    width: 200px; /* 横幅350px */
+    height: 620px; /* 親の高さに揃える */
+    background-color: gold; /* 背景色gold */
+    }
+
+    nav {
+    background-color: #808000;
+    }
+
+    footer {
+    width: 100%;
+    background-color: #808000;
+    }
+  </style>
 </html>
