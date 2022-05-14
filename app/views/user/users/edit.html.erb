@@ -1,0 +1,44 @@
+<h4>ユーザー編集画面</h4>
+<div class="edit-user">
+  <%= form_with model: @user do |f| %>
+  <table class="usre-information">
+    <tr>
+      <th>プロフィール画像</th>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
+    </tr>
+    <tr>
+      <th>ユーザー名</th>
+      <td><%= f.text_field :user_name %></td>
+    </tr>
+    <tr>
+      <th>年齢</th>
+      <td><%= f.select :age, ([["20代", 1], ["30代", 2], ["40代", 3], ["50代", 4], ["60代", 5], ["70代", 6], ["80代", 7]]), prompt: "選択してください" %></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td></td>
+    </tr>
+
+    <tr>
+      <th>お住まい</th>
+      <td><%= f.text_field :address_free %>都道府県 <%= f.text_field :address %>市町村</td>
+    </tr>
+
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= f.email_field :email, autocomplete: "email" %></td>
+    </tr>
+
+    <tr>
+      <th>電話番号</th>
+      <td><%= f.number_field :phone_number %></td>
+    </tr>
+
+    <tr>
+      <th>自己紹介文</th>
+      <td><%= f.text_area :user_introduction %></td>
+    </tr>
+
+  </table>
+  <%= f.submit '変更内容を保存する', class: "btn btn-outline-success" %><% end %>
+</div>

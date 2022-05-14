@@ -1,7 +1,50 @@
-ユーザー詳細画面
-
-<table>
+<h4>Hello! <%= @user.user_name %> さん</h4>
+<table class="table">
     <tr>
-        <th>姓</th><td><%= @user.last_name %></td><th>名</th><td><%= @user.first_name %></td>
+      <th>プロフィール画像</th>
+      <td>
+        <% if @user.image.attached? %>
+        <%= image_tag @user.image, size: "100x100" %>
+        <% else %>
+        <%= image_tag 'no_image', size: "100x100" %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>ユーザー名</th>
+      <td><%= @user.user_name %><%= @user.age %></td>
+    </tr>
+    <tr>
+      <th>お住まい</th>
+      <td><%= @user.address_free %> <%= @user.address %></td>
+    </tr>
+    <tr>
+      <th>自己紹介文</th>
+      <td><%= @user.user_introduction %></td>
     </tr>
 </table>
+<div class="edit">
+    <%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
+    <i class="fas fa-user-cog fa-lg"></i>
+    <% end %>
+</div>
+
+右に趣味活スケジュール
+
+<style>
+.table {
+width: 70%;
+}
+
+.edit {
+width: 70%;
+}
+
+img {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width: 100px;  /* 縦横を同じ値にする */
+  height: 100px;  /* 縦横を同じ値にする */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+
+</style>

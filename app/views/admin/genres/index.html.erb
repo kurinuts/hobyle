@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <h4>ジャンル投稿</h4>
+      <div class="new-genres">
+        <%= form_with model: @genre, url: admin_genres_path do |f| %>
+        <%= f.text_field :name %>
+        <%= f.submit '投稿' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <% @genres.each do |genre| %>
+      <table>
+        <tr>
+          <th>ジャンル名</th>
+        </tr>
+        <tr>
+          <td><%= genre.name %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
