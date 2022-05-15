@@ -15,7 +15,7 @@
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-          <a class="navbar-brand p-3" href="/"><strong>Hobyle</strong></a>
+          <a class="navbar-brand p-3" href="/"><h4><strong>Hobyle</strong></h4></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,6 +32,16 @@
             <li class="nav-item">
               <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-white' %>
             </li>
+            <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'イベント一覧', events_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '会員一覧', admin_users_path, class: 'nav-link text-white' %>
+            </li>
             <% else %>
             <li class="nav-item">
               <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-white' %>
@@ -46,7 +56,8 @@
       </nav>
     </header>
     <div class="row p-0 m-0">
-      <div class="col-md-3 p-0 m-0">
+      
+      <div class="col-md-2 p-0 m-0">
         <div class="main-visual">
           <h4>アウトドア・インドア・その他から１つずつ新着イベント羅列</h4>
           <% @users.each do |user| %>
@@ -56,7 +67,7 @@
           <% end %>
         </div>
       </div>
-      <div class="col-md-9 p-0 m-0">
+      <div class="col-md-10 p-0 m-0">
         <div class="container">
           <%= yield %>
         </div>
@@ -70,7 +81,8 @@
     <!--<%#= yield %>-->
     <!--</main>-->
     <footer class="text-white pt-5 pb-4 fixed-bottom">
-            <% if admin_signed_in? %>
+      <% if admin_signed_in? %>
+
       <%= link_to "Admin Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger btn-sm btn-block" %>
       <% else %>
       <%= link_to "Admin Log In", new_admin_session_path, class: "btn btn-outline-warning btn-sm btn-block" %>

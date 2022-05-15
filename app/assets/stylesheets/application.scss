@@ -14,15 +14,18 @@
  *= require_self
  */
 
+* {
+  font-family: sans-serif;
+}
 body {
-  padding-top: 78px;
+  padding-top: 84.8px;
   padding-bottom: 103px;
 }
 
 .main-visual {
   width: 100%; /* 横幅350px */
-  height: calc(100vh - 78px - 103px); /* 親の高さに揃える */
-  background-color: gold; /* 背景色gold */
+  height: calc(100vh - 84.8px - 103px); /* 親の高さに揃える */
+  background-color: #D2B48C; /* 背景色gold */
 }
 
 @media screen and (max-width: 1199.98px) {}

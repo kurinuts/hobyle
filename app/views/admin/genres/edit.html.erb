@@ -1,0 +1,64 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_with model: @genre, url: admin_genre_path(@genre) do |f| %>
+      <table>
+        <tr>
+          <th>ジャンル名</th>
+    　　　　<th>ジャンルイメージ追加</th>
+    　　　　<tr>
+    　　　　  <td><%= f.text_field :name %></td>
+    　　　　  <td><%= f.file_field :image, accept: "image/*" %></td>
+    　　　  </tr>
+    　</table>
+    　<%= f.submit '変更を更新する' %>
+    　<div class="image">
+    　  <% if @genre.image.attached? %>
+       <%= image_tag @genre.image, size: "400x300" %>
+       <% else %>
+       <%= image_tag 'no_image', size: "400x300" %>
+       <% end %>
+    　</div>
+    　   <div class="link">
+        <%= link_to "ジャンル一覧画面へ", admin_genres_path, class: "btn btn-outline-warning btn-block" %>
+        <%= link_to "ジャンル詳細画面へ", admin_genre_path(@genre), class: "btn btn-outline-primary btn-block" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <tr>
+          <th><%= @genre.name %>のジャンル詳細</th>
+          <% end %>
+        </tr>
+      </table>
+      
+
+      <table class="table">
+        <tr>
+          <th>詳細ジャンル名</th>
+        </tr>
+        <tr>
+          <% @secondgenres.each do |secondgenre| %>
+          <td><%= secondgenre.secondgenre_name %></td>
+          <td>
+            <%= link_to "編集", edit_admin_secondgenre_path(secondgenre), class: "btn btn-outline-success btn-block-xs" %>
+            <%= link_to "削除", admin_secondgenres_path(secondgenre), method: :delete, class: "btn btn-outline-danger btn-block-xs" %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  .image {
+    margin-top: 20px;
+  }
+
+  .link {
+    width: 76.5%;
+    margin-left: 20px;
+  }
+</style>

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+    　<div class="image">
+
+    　  <% if @secondgenre.genre.image.attached? %>
+       <%= image_tag @secondgenre.genre.image, size: "400x300" %>
+       <% else %>
+       <%= image_tag 'no_image', size: "400x300" %>
+       <% end %>
+    　</div>
+    　   <div class="link">
+        <%= link_to "ジャンル一覧画面へ", admin_genres_path, class: "btn btn-outline-warning btn-block" %>
+        <%= link_to "ジャンル詳細画面へ", admin_genre_path(@genre), class: "btn btn-outline-primary btn-block" %>
+        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="edit">
+        <%= form_with model: @secondgenre, url: admin_secondgenres_path, method: :patch do |f| %>
+      <td>
+        <%= f.text_field :secondgenre_name %>
+        <%= f.submit '変更を更新する' %>
+        <% end %>
+      </div>
+  <style>
+
+  .link {
+    width: 76.5%;
+    margin-left: 20px;
+  }
+
+  .edit {
+    margin-top: 30px;
+  }
+  </style>

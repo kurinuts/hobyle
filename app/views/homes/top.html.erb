@@ -1,0 +1,100 @@
+
+  <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tr>
+          <th>ジャンルで検索</th>
+          <th>年代別で検索</th>
+          <th>地域別で検索</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      検索
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h5><strong>ユーザー同士で趣味を共有できる趣味活応援サイト<br>
+      趣味を探している人、趣味を仲間と楽しみたい人、休日の予定を埋めたい人<br>
+      ～ Hobyleから始めよう ～</strong></h5>
+    </div>
+  </div>
+</div>
+<div class="contents">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="list-1">
+          <%= image_tag 'event', size: "200x200" %>
+          <%= link_to events_path, class: "btn btn-outline-warning btn-block" do %>
+          <strong>近日開催のイベント</strong><% end %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="list-2">
+          <%= image_tag 'memories', size: "200x200" %><br>
+          <%= link_to participated_events_path, class: "btn btn-outline-warning btn-block" do %>
+          <strong>みんなの趣味活</strong><% end %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="list-3">
+          <%= image_tag 'スケジュール', size: "200x200" %><br>
+          <%= link_to new_event_path, class: "btn btn-outline-warning btn-block" do %>
+          <strong>趣味活イベントを企画</strong><% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  h3 {
+    padding-top: 30px;
+
+  table {
+    padding-top: 30px;
+  }
+
+  }
+  h5 {
+    display: block;
+    text-align: center;
+    margin-top: 80px;
+    padding: 10px;
+    font-family: sans-serif;
+  }
+
+  .list-1 {
+    background-color: gray;
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    object-fit: cover;
+  }
+
+  .list-2 {
+    background-color: gray;
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    object-fit: cover;
+  }
+
+  .list-3 {
+    background-color: gray;
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    object-fit: cover;
+  }
+
+img {
+  border-radius: 50%; 
+  object-fit: cover; 
+  img-align: center;
+  text-align: center;
+  
+  }
+
+</style>

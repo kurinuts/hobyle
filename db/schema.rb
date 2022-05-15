@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_10_125022) do
+ActiveRecord::Schema.define(version: 2022_05_15_093846) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,15 +52,32 @@ ActiveRecord::Schema.define(version: 2022_05_10_125022) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "applications", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "events_id"
+    t.integer "genres_id"
+    t.integer "number"
+    t.text "application_comment"
+    t.text "cancel_comment"
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer "genre_id"
+    t.integer "secondgenre_id"
+    t.integer "user_id"
     t.string "title"
-    t.string "day"
-    t.string "time"
-    t.string "introduction"
+    t.datetime "daytime"
+    t.integer "all_time"
+    t.text "introduction"
+    t.integer "limit_number"
+    t.string "place"
     t.integer "fee"
     t.string "preparation"
     t.string "remarks"
+    t.string "second_remarks"
+    t.string "question"
+    t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -71,17 +88,37 @@ ActiveRecord::Schema.define(version: 2022_05_10_125022) do
     t.string "name"
   end
 
-  create_table "particicated_events", force: :cascade do |t|
+  create_table "participated_events", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "thought"
+    t.string "thought_comment_title"
+    t.text "thought_comment"
   end
 
   create_table "participation_events", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "comment"
-    t.boolean "is_active"
+    t.string "participation_comment_title"
+    t.text "participation_comment"
+  end
+
+  create_table "reservationcs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "start_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "secondgenres", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "secondgenre_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,6 +133,8 @@ ActiveRecord::Schema.define(version: 2022_05_10_125022) do
     t.string "address_free"
     t.string "address"
     t.string "user_introduction"
+    t.boolean "sex"
+    t.integer "age"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

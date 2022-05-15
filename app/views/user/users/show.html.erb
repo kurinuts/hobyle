@@ -1,34 +1,90 @@
-<h4>Hello! <%= @user.user_name %> さん</h4>
-<table class="table">
-    <tr>
-        <th>氏名</th>
-        <td><%= @user.last_name %> <%= @user.first_name %></td>
-    </tr>
-    <tr>
-        <th>お住まい</th>
-        <td><%= @user.address_free %> <%= @user.address %></td>
-    </tr>
-    <tr>
-    <tr>
-        <th>自己紹介文</th>
-        <td><%= @user.user_introduction %></td>
-    </tr>
-</table>
-<div class="edit">
-    <%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
-    <i class="fas fa-user-cog fa-lg"></i>
-    <% end %>
-    
-</div>
 
-右に趣味活スケジュール
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <% if @user == current_user %>
+      <h4>Hello! <%= @user.user_name %> さん</h4>
+      趣味活スケジュール
+      <table>
+        <tr>
+          <th></th>
+          <th>日程</th>
+          <th>ジャンル</th>
+          <th>タイトル</th>
+          <th>主催者</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>主催者ユーザー画像</td>
+          <td>〇〇月●日</td>
+          <td>タイトル</td>
+          <td>ユーザー</td>
+          <td>詳細画面</td>
+        </tr>
+      </table>
+      <% else %>
+      <strong><%= @user.user_name %></strong>さんの企画イベント履歴
+      <table class="table">
+        <tr>
+          <th>開催日</th>
+          <th>タイトル</th>
+          <th>場所</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>詳細画面</td>
+        </tr>
+      </table>
+      <% end %>
+
+    </div>
+    <div class="col-md-6">
+      <table class="table", border=1 frame="box">
+        <tr>
+          <th>プロフィール画像</th>
+          <td>
+          <% if @user.image.attached? %>
+          <%= image_tag @user.image, size: "100x100" %>
+          <% else %>
+          <%= image_tag 'no_image', size: "100x100" %>
+          <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>ユーザー名</th>
+          <td><%= @user.user_name %><%= @user.age %></td>
+        </tr>
+        <tr>
+          <th>お住まい</th>
+          <td><%= @user.address_free %> <%= @user.address %></td>
+        </tr>
+        <tr>
+          <th>自己紹介文</th>
+          <td><%= @user.user_introduction %></td>
+        </tr>
+      </table>
+      <div class="edit">
+        <% if @user == current_user %>
+        <%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
+        <i class="fas fa-user-cog fa-lg"></i>
+        <% end %><% end %>
+      </div>
+    </div>
+
+
 
 <style>
-    .table {
-        width: 60%;
-    }
-    
-    .edit {
-        width: 60%;
-    }
+img {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width: 100px;  /* 縦横を同じ値にする */
+  height: 100px;  /* 縦横を同じ値にする */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+
+.table {
+  margin-top: 10px;
+}
 </style>

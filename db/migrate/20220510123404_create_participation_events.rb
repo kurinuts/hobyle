@@ -3,8 +3,8 @@ class CreateParticipationEvents < ActiveRecord::Migration[6.1]
     create_table :participation_events do |t|
 
       t.timestamps
-      t.string :comment
-      t.boolean :is_active
+      t.string :participation_comment_title
+      t.text :participation_comment
       
     end
   end

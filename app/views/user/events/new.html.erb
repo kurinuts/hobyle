@@ -1,9 +1,27 @@
-NEWイベント
-・ジャンル
-・タイトル
-・日にち
-・開始時間
-・紹介文
-・会費
-・持ち物
-・備考
+<h4>NEWイベント</h4>
+<div class="new-event">
+  <%= form_with model: @event, url: events_path do |f| %>
+  <table class="table">
+    <tr>
+      <th>イベントジャンル</th><td><%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "選択してください") %></td>
+      <th>タイトル</th><td><%= f.text_field :title %></td>
+    <tr>
+      <th>紹介コメント</th><td><%= f.text_area :introduction %></td>
+      <th>日時</th><td><input type="datetime-local" name="daytime" min="2017-04-01T00:00" max="2023-12-31T23:59"></td>
+    </tr>
+    <tr>
+      <th>所要時間</th><td><%= f.number_field :all_time %> 時間程度</td>
+      <th>会費</th><td><%= f.number_field :fee %> 円</td>
+    </tr>
+    <tr>
+      <th>場所</th><td><%= f.text_area :place %></td>
+      <th>持ち物</th><td><%= f.text_area :preparation %></td>
+    </tr>
+    <tr>
+      <th>備考</th><td><%= f.text_area :remarks %></td>
+      <th>＊備考</th><td><%= f.text_area :second_remarks %></td>
+    </tr>
+  </table>
+   <%= f.submit 'NEWイベント投稿' %>
+</div>
+<% end %>

@@ -19,37 +19,45 @@
       <tr>
         <th>ユーザー名</th>
         <td><%= f.text_field :user_name %></td>
+        <th></th>
+        <td></td>
       </tr>
       <tr>
-        <th >メールアドレス</th>
+        <th>メールアドレス</th>
         <td>
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </td>
+        <th></th>
+        <td></td>
       </tr>
       <tr>
         <th>パスワード</th>
         <td>
           <%= f.password_field :password, autocomplete: "new-password" %>
         </td>
-        <td>
+        <th>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
-        </td>
+        </th>
+        <td></td>
       </tr>
       <tr>
         <th>パスワード確認</th>
         <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </td>
-        <td>
+        <th>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
-        </td>
+        </th>
+        <td></td>
       </tr>
       <tr>
         <th>携帯電話番号</th>
         <td><%= f.number_field :phone_number %></td>
+        <th></th>
+        <td></td>
       </tr>
       <tr>
         <th>お住まいの県名</th>
@@ -62,19 +70,16 @@
         <td><%= f.text_area :user_introduction %></td>
       </tr>
     </table>
-  </div>
 
   <div class="actions">
     <%= f.submit "新規登録" %>
   </div>
 <% end %>
-
-<%= link_to '新規登録', new_user_registration_path %><br>
 <%= render "devise/shared/links" %>
 
 <style>
   .table {
-    width: 60%;
+    width: 100%%;
     text-align: center;
   }
 </style>

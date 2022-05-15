@@ -1,3 +1,3 @@
-class ParticicatedEvent < ApplicationRecord
+class ParticipatedEvent < ApplicationRecord
   has_one_attached :image
 end

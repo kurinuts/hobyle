@@ -1,0 +1,40 @@
+<table class="table">
+  <tr>
+  <h4>ユーザー一覧</h4>
+    <th>ID</th>
+    <th></th>
+    <th>氏名</th>
+    <th>ユーザー名</th>
+    <th>住所都道府県</th>
+    <th>住所市区町村</th>
+    <th>連絡先</th>
+    <th>メールアドレス</th>
+  </tr>
+  <tr>
+  <% @users.each do |user| %>
+    <td><%= user.id %></td>
+    <td>
+      <% if user.image.attached? %>
+      <%= image_tag user.image, size: "25x25" %>
+      <% else %>
+      <%= image_tag 'no_image', size: "25x25" %>
+      <% end %>
+    </td>
+    <td><%= link_to user_path(user) do %><%= user.last_name %> <%= user.first_name %><% end %></td>
+    <td><%= user.user_name %></td>
+    <td><%= user.address_free %></td>
+    <td><%= user.address %></td>
+    <td><%= user.phone_number %></td>
+    <td><%= user.email %></td>
+  </tr>
+  <% end %>
+</table>
+<style>
+  img {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+  .table {
+    margin-top: 10px;
+  }
+</style>
