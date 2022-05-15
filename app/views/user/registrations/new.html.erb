@@ -70,14 +70,13 @@
         <td><%= f.text_area :user_introduction %></td>
       </tr>
     </table>
-    
+
   </div>
 
   <div class="actions">
     <%= f.submit "新規登録" %>
   </div>
 <% end %>
-<%= link_to '新規登録', new_user_registration_path %><br>
 <%= render "devise/shared/links" %>
 
 <style>

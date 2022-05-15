@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     # resources :sessions
     get "homes" => "homes#top", as: "homes"
     resources :genres
+    resources :secondgenres
     resources :users
     get 'user/views/:id' => 'user#views'
   end
@@ -22,6 +23,9 @@ Rails.application.routes.draw do
   scope module: :user do
     resources :events
     resources:users
+    resources :events
+    resources :participated_events
+    resources :participation_events
     # post 'orders/confirm' => 'orders#confirm'
     # get 'orders/complete' => 'orders#complete'
     # get 'unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
@@ -32,8 +36,4 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :events
-  resources :genres
-  resources :particicated_events
-  resources :participation_events
 end

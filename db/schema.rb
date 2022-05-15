@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_14_132613) do
+ActiveRecord::Schema.define(version: 2022_05_15_093846) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -64,17 +64,18 @@ ActiveRecord::Schema.define(version: 2022_05_14_132613) do
 
   create_table "events", force: :cascade do |t|
     t.integer "genre_id"
+    t.integer "secondgenre_id"
     t.integer "user_id"
     t.string "title"
-    t.string "day"
-    t.string "time"
+    t.datetime "daytime"
+    t.integer "all_time"
     t.text "introduction"
     t.integer "limit_number"
     t.string "place"
     t.integer "fee"
     t.string "preparation"
     t.string "remarks"
-    t.string "remarks2"
+    t.string "second_remarks"
     t.string "question"
     t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false
@@ -87,7 +88,7 @@ ActiveRecord::Schema.define(version: 2022_05_14_132613) do
     t.string "name"
   end
 
-  create_table "particicated_events", force: :cascade do |t|
+  create_table "participated_events", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "thought_comment_title"
@@ -109,6 +110,13 @@ ActiveRecord::Schema.define(version: 2022_05_14_132613) do
   end
 
   create_table "schedules", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "secondgenres", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "secondgenre_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,19 +1,23 @@
 class User::EventsController < ApplicationController
-  
+
   def new
     @event = Event.new
+    @genres = Genre.all
   end
-  
+
   def create
+    @genre = Genre.all
     @event = Event.new(event_params)
-    @event.save
+    if @event.save
     redirect_to events_path
+    end
   end
 
   def show
   end
 
   def index
+    @events = Event.all
   end
 
   def edit
@@ -21,11 +25,7 @@ class User::EventsController < ApplicationController
 
   private
   def event_params
-  params.require(:event).permit(:genre_id, :all_time, :title, :day, :time, :introduction, :fee, :preparation, :remarks)
+  params.require(:event).permit(:genre_id, :user_id, :secondgenre_id, :title, :daytime, :all_time, :introduction, :limit_number, :fee, :place, :preparation, :remarks, :second_remarks, :question, :is_active)
   end
-  
-  private
-  def schedule_params
-  params.require(:schedule).permit(:start_time)
-  end
+
 end

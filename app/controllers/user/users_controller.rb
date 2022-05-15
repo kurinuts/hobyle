@@ -11,13 +11,13 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user == current_user
   end
 
   def index
     @genres = Genre.all
     @events = Event.all
     @applications = Application.all
+    @users = User.all
   end
 
   def edit

@@ -1,0 +1,21 @@
+<h4><strong>イベント一覧</strong></h4>
+<table class="table">
+  <tr>
+    <th>ジャンル</th>
+    <th>タイトル</th>
+    <th>日時</th>
+    <th>開催場所</th>
+    <th>会費</th>
+    <th>開催ユーザー</th>
+  </tr>
+  <tr>
+    <% @events.each do |event| %>
+    <td><%= event.genre_id %></td>
+    <td><%= event.title %></td>
+    <td><%= event.daytime %></td>
+    <td><%= event.place %></td>
+    <td><%= event.fee %> 円程度</td>
+    <td><%= event.user_id %></td>
+  </tr>
+    <% end %>
+</table>

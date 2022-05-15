@@ -31,16 +31,25 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-      ・イベント一覧
-予定されているイベントを閲覧
+        <div class="list-1">
+          <%= image_tag 'event', size: "200x200" %>
+          <%= link_to events_path, class: "btn btn-outline-warning btn-block" do %>
+          <strong>近日開催のイベント</strong><% end %>
+        </div>
       </div>
       <div class="col-md-4">
-      ・memories
-ユーザーたちのイベントmemoryを閲覧
+        <div class="list-2">
+          <%= image_tag 'memories', size: "200x200" %><br>
+          <%= link_to participated_events_path, class: "btn btn-outline-warning btn-block" do %>
+          <strong>みんなの趣味活</strong><% end %>
+        </div>
       </div>
       <div class="col-md-4">
-・新規イベント企画
-趣味イベントをスケジューリング
+        <div class="list-3">
+          <%= image_tag 'スケジュール', size: "200x200" %><br>
+          <%= link_to new_event_path, class: "btn btn-outline-warning btn-block" do %>
+          <strong>趣味活イベントを企画</strong><% end %>
+        </div>
       </div>
     </div>
   </div>
@@ -62,8 +71,30 @@
     font-family: sans-serif;
   }
 
-  .contents {
-    margin-top: 100px;
+  .list-1 {
+    background-color: gray;
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    object-fit: cover;
   }
+
+  .list-2 {
+    background-color: gray;
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    object-fit: cover;
+  }
+
+  .list-3 {
+    background-color: gray;
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    object-fit: cover;
+  }
+
+img {
+  border-radius: 50%; 
+  object-fit: cover; 
+  img-align: center;
+  text-align: center;
   
+  }
+
 </style>
