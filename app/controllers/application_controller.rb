@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :main_visual
+
+  def main_visual
+    @users = User.all
+  end
 
   protected
 
@@ -9,5 +14,5 @@ class ApplicationController < ActionController::Base
 
   def top
   end
-  
+
 end
