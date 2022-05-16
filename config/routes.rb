@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :user do
+     get "subgenre" => "events#subgenre"
     resources :events
     resources:users
     resources :events

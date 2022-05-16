@@ -4,18 +4,27 @@
   <table class="table">
     <tr>
       <th>イベントジャンル</th><td><%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "選択してください") %></td>
+      <th>サブタイプ</th>
+           <td>
+
+          <%= f.collection_select(:secondgenre_id, [], :id, :secondgenre_name, prompt: "選択してください") %>
+      </td>
+
+    <tr>
       <th>タイトル</th><td><%= f.text_field :title %></td>
-    <tr>
       <th>紹介コメント</th><td><%= f.text_area :introduction %></td>
+    </tr>
+    <tr>
       <th>日時</th><td><input type="datetime-local" name="daytime" min="2017-04-01T00:00" max="2023-12-31T23:59"></td>
-    </tr>
-    <tr>
       <th>所要時間</th><td><%= f.number_field :all_time %> 時間程度</td>
-      <th>会費</th><td><%= f.number_field :fee %> 円</td>
     </tr>
     <tr>
+      <th>会費</th><td><%= f.number_field :fee %> 円</td>
       <th>場所</th><td><%= f.text_area :place %></td>
+    </tr>
+    <tr>
       <th>持ち物</th><td><%= f.text_area :preparation %></td>
+      <th>予定人数</th><td><%= f.number_field :limit_number %></td>
     </tr>
     <tr>
       <th>備考</th><td><%= f.text_area :remarks %></td>
@@ -25,3 +34,38 @@
    <%= f.submit 'NEWイベント投稿' %>
 </div>
 <% end %>
+
+
+
+
+<script>
+    $('#event_genre_id').change(function() {
+        var text = $('#event_genre_id option:selected').text();
+        var url =  gon.root + "?q=" + text
+
+        $.ajax({
+              url: url,
+              dataType: "json",
+              success: function(data) {
+
+
+$('#event_secondgenre_id').children().remove();
+ $('#event_secondgenre_id').append($("<option>").text("選択してください"));
+
+$.each(data, function(index, val) {
+
+
+  $('#event_secondgenre_id').append($("<option>").val(val.genre_id).text(val.secondgenre_name));
+});
+
+              },
+              error: function(data) {
+                 console.log(data)
+              }
+             });
+
+    });
+
+
+</script>
+
