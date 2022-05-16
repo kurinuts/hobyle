@@ -1,8 +1,83 @@
-タイトル
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table">
+          <tr><h1> </h1></tr>
+          <tr><h2><strong><%= @event.title %></strong></h2></tr>
+          <tr>
+            <th>日時</th>
+            <td><%= @event.title %></td>
+          </tr>
+          <tr>
+            <th>場所</th>
+            <td><%= @event.place %></td>
+          </tr>
+          <tr>
+            <th>人数</th>
+            <td><%= @event.limit_number %> 人</td>
+          </tr>
+          <tr>
+            <th>時間幅</th>
+            <td><%= @event.all_time %> 時間</td>
+          </tr>
+          <tr>
+            <th>会費</th>
+            <td><%= @event.fee %> 円程度</td>
+          </tr>
+          <tr>
+            <th>持ち物</th>
+            <td><%= @event.preparation %></td>
+          </tr>
+          <tr>
+            <th>備考</th>
+            <td><%= @event.remarks %></td>
+          </tr>
+          <tr>
+            <th>備考2</th>
+            <td><%= @event.second_remarks %></td>
+          </tr>
+          <tr>
+            <%= form_with model: @event, url: event_path(@event) do |f| %>
+            <th>質問する</th>
+            <td><%= f.text_area :question %> <input type="submit" value"送信する" class="button"></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <table class="table">
+          <tr>
+            <th>ユーザー名</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>プロフィール画像</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td></td>
+          </tr>
+        </table>
 
-event_image
-<table>
-  <tr>
-    <th></th><td></td>
-  </tr>
-</table>
+        <table>
+          <tr>これまでの質問</tr>
+          <tr><th><%= @event.question %></th><td>回答</td></tr>
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    h2 {
+      background-color: darkseagreen;
+      color: white;
+      text-align: center;
+    }
+
+    .button {
+      background-color: darkseagreen;
+      color: white;
+    }
+  </style>

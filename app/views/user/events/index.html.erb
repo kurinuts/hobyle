@@ -4,6 +4,7 @@
     <th>ジャンル</th>
     <th>タイトル</th>
     <th>日時</th>
+    <th>予定人数</th>
     <th>開催場所</th>
     <th>会費</th>
     <th>開催ユーザー</th>
@@ -11,8 +12,9 @@
   <tr>
     <% @events.each do |event| %>
     <td><%= event.genre_id %></td>
-    <td><%= event.title %></td>
+    <td><%= link_to event_path(event) do  %><%= event.title %><% end %></td>
     <td><%= event.daytime %></td>
+    <td><%= event.limit_number %> 人</td>
     <td><%= event.place %></td>
     <td><%= event.fee %> 円程度</td>
     <td><%= event.user_id %></td>
