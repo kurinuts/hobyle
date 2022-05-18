@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :events
     resources:users
     resources :events
+    resources :applications
     resources :participated_events
     resources :participation_events
     # post 'orders/confirm' => 'orders#confirm'
