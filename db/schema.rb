@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_15_093846) do
+ActiveRecord::Schema.define(version: 2022_05_19_122307) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,20 +52,23 @@ ActiveRecord::Schema.define(version: 2022_05_15_093846) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "applications", force: :cascade do |t|
+  create_table "event_users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "events_id"
-    t.integer "genres_id"
-    t.integer "number"
+    t.integer "user_id"
+    t.integer "event_id"
+    t.integer "member_count"
     t.text "application_comment"
     t.text "cancel_comment"
+    t.string "applicated_title"
+    t.text "applipated_comment"
+    t.integer "status"
   end
 
   create_table "events", force: :cascade do |t|
     t.integer "genre_id"
-    t.integer "secondgenre_id"
     t.integer "user_id"
+    t.integer "secondgenre_id"
     t.string "title"
     t.datetime "daytime"
     t.integer "all_time"
@@ -86,20 +89,7 @@ ActiveRecord::Schema.define(version: 2022_05_15_093846) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-  end
-
-  create_table "participated_events", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "thought_comment_title"
-    t.text "thought_comment"
-  end
-
-  create_table "participation_events", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "participation_comment_title"
-    t.text "participation_comment"
+    t.integer "admin_id"
   end
 
   create_table "reservationcs", force: :cascade do |t|
@@ -116,7 +106,7 @@ ActiveRecord::Schema.define(version: 2022_05_15_093846) do
 
   create_table "secondgenres", force: :cascade do |t|
     t.integer "genre_id"
-    t.string "secondgenre_name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

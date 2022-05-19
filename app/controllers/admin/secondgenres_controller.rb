@@ -6,10 +6,10 @@ class Admin::SecondgenresController < ApplicationController
 
   def create
     @secondgenre = Secondgenre.new(secondgenre_params)
+    @secondgenre.genre_id = params[:secondgenre][:genre_id]
+
     if @secondgenre.save
       redirect_to admin_genres_path
-    else
-      render :show
     end
   end
 
@@ -37,6 +37,6 @@ class Admin::SecondgenresController < ApplicationController
 
   private
   def secondgenre_params
-    params.require(:secondgenre).permit(:genre_id, :secondgenre_name)
+    params.require(:secondgenre).permit(:genre_id, :name)
   end
 end

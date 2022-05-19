@@ -1,2 +1,0 @@
-class ParticipationEvent < ApplicationRecord
-end

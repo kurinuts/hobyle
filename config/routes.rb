@@ -25,9 +25,7 @@ Rails.application.routes.draw do
     resources :events
     resources:users
     resources :events
-    resources :applications
-    resources :participated_events
-    resources :participation_events
+    resources :event_users
     # post 'orders/confirm' => 'orders#confirm'
     # get 'orders/complete' => 'orders#complete'
     # get 'unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'

@@ -27,8 +27,8 @@
           </td>
           <% @secondgenres.each do |secondgenre| %>
             <% if secondgenre.genre_id == genre.id %>
-              <td><%= secondgenre.secondgenre_name %></td>
-            <% end %>  
+              <td><%= secondgenre.name %></td>
+            <% end %>
           <% end %>
           <td>
             <%= link_to "詳細", admin_genre_path(genre.id), class: "btn btn-outline-primary btn-block-xs" %><br>
