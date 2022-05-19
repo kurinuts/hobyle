@@ -81,7 +81,28 @@
           </tr>
         </table>
         <input type="submit" style="width: 30%; background-color: darkkhaki; " value="参加する" class="button">
-          <% end %><% end %>
+          <% end %>
+          <% else %>
+          <table class="table">
+          <tr><h3><strong>参加申請</strong></h3>
+          <%= form_with model: @event_user, url: event_users_path, method: :post do |f| %>
+          </tr>
+          <tr>
+            <th>人数</th>
+            <td><%= f.number_field :number %>
+            <%= hidden_field_tag :number, @event_user.member_count %>
+            </td>
+          </tr>
+          <tr>
+            <th>コメント</th>
+            <td><%= f.text_area :commenr %>
+            <%= hidden_field_tag :commenr, @event_user.application_comment %>
+            </td>
+          </tr>
+        </table>
+          <% end %>
+          <h4>会員登録すると参加申請ができます</h4>
+          <% end %>
       </div>
     </div>
   </div>
@@ -111,5 +132,9 @@
       color: lemonchiffon;
       padding: 5px;
       width: 100%;
+    }
+    
+    h4  {
+      text-align: center;
     }
 </style>
