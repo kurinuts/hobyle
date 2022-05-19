@@ -6,9 +6,11 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
+    @genre.admin_id = current_admin.id
     if @genre.save
     redirect_to admin_genres_path
     else
+    @genres = Genre.all
     render :index
     end
   end
@@ -26,7 +28,7 @@ class Admin::GenresController < ApplicationController
 
   def edit
     @genre = Genre.find(params[:id])
-    @secondgenres = @genre.secondgenres.all
+    @secondgenres = @genre.secondgenre.all
   end
 
   def update
@@ -45,7 +47,7 @@ class Admin::GenresController < ApplicationController
   flash[:notice] = "successfully cart_item_delete"
   redirect_to admin_genres_path
   else
-  render :show
+  render :index
   end
   end
 
@@ -55,6 +57,6 @@ class Admin::GenresController < ApplicationController
   end
 
   # def secondgenre_params
-  # params.require(:secondgenre.permit(:secondgenre_name, :genre_id))
+  # params.require(:secondgenre.permit(:name, :genre_id))
   # end
 end

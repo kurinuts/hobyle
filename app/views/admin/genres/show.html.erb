@@ -19,7 +19,7 @@
         <tr>
           <th>趣味名</th>
           <th><%= form_with model: Secondgenre.new, url: admin_secondgenres_path do |f| %>
-          <%= f.text_field :secondgenre_name %>
+          <%= f.text_field :name %>
           <%= f.hidden_field :genre_id, :value => @genre.id %>
           </th>
           <th><%= f.submit '追加' %><% end %></th>
@@ -27,7 +27,7 @@
         <tr>
           <% @secondgenres.each do |secondgenre| %>
           <td>
-              <%= secondgenre.secondgenre_name %><br>
+              <%= secondgenre.name %><br>
           </td>
           <td> </td>
           <td> </td>

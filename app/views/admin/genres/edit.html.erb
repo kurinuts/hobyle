@@ -40,7 +40,7 @@
         </tr>
         <tr>
           <% @secondgenres.each do |secondgenre| %>
-          <td><%= secondgenre.secondgenre_name %></td>
+          <td><%= secondgenre.name %></td>
           <td>
             <%= link_to "編集", edit_admin_secondgenre_path(secondgenre), class: "btn btn-outline-success btn-block-xs" %>
             <%= link_to "削除", admin_secondgenres_path(secondgenre), method: :delete, class: "btn btn-outline-danger btn-block-xs" %>

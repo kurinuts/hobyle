@@ -18,7 +18,7 @@
       <div class="edit">
         <%= form_with model: @secondgenre, url: admin_secondgenres_path, method: :patch do |f| %>
       <td>
-        <%= f.text_field :secondgenre_name %>
+        <%= f.text_field :name %>
         <%= f.submit '変更を更新する' %>
         <% end %>
       </div>

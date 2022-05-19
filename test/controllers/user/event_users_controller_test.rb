@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ParticipationEventTest < ActiveSupport::TestCase
+class User::EventUsersControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

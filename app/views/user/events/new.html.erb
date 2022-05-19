@@ -7,7 +7,7 @@
       <th>サブタイプ</th>
            <td>
 
-          <%= f.collection_select(:secondgenre_id, [], :id, :secondgenre_name, prompt: "選択してください") %>
+          <%= f.collection_select(:secondgenre_id, [], :id, :name, prompt: "選択してください") %>
       </td>
 
     <tr>
@@ -55,7 +55,7 @@ $('#event_secondgenre_id').children().remove();
 $.each(data, function(index, val) {
 
 
-  $('#event_secondgenre_id').append($("<option>").val(val.genre_id).text(val.secondgenre_name));
+  $('#event_secondgenre_id').append($("<option>").val(val.genre_id).text(val.name));
 });
 
               },

@@ -4,7 +4,7 @@ class CreateGenres < ActiveRecord::Migration[6.1]
 
       t.timestamps
       t.string :name
-      
+      t.integer :admin_id
     end
   end
 end
