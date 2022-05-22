@@ -5,13 +5,12 @@
     <tr>
       <th>イベントジャンル</th><td><%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "選択してください") %></td>
       <th>サブタイプ</th>
-           <td>
-
-          <%= f.collection_select(:secondgenre_id, [], :id, :name, prompt: "選択してください") %>
+      <td>
+        <%= f.collection_select(:secondgenre_id, [], :id, :name, prompt: "選択してください") %>
       </td>
-
+    </tr>
     <tr>
-      <th>タイトル</th><td><%= f.text_field :title %></td>
+      <th>タイトル</th><td><%= f.text_field :title, placeholder: "必須" %></td>
       <th>紹介コメント</th><td><%= f.text_area :introduction %></td>
     </tr>
     <tr>
@@ -28,12 +27,12 @@
     </tr>
     <tr>
       <th>備考</th><td><%= f.text_area :remarks %></td>
-      <th>＊備考</th><td><%= f.text_area :second_remarks %></td>
+      <th>＊質問回答</th><td><%= f.text_area :second_remarks, placeholder: "イベント投稿後、質問があった場合に回答を付け足してください" %></td>
     </tr>
   </table>
-   <%= f.submit 'NEWイベント投稿' %>
+  <%= f.submit 'NEWイベント投稿' %>
+  <% end %>
 </div>
-<% end %>
 
 
 

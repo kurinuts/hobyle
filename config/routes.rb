@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     resources :genres
     resources :secondgenres
     resources :users
-    get 'user/views/:id' => 'user#views'
   end
 
   scope module: :user do
@@ -25,6 +24,7 @@ Rails.application.routes.draw do
     resources:users
     resources :events
     resources :event_users
+    get "event_users/cancel" => "event_users#destroy"
     # post 'orders/confirm' => 'orders#confirm'
     # get 'orders/complete' => 'orders#complete'
     # get 'unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     # put 'withdraw/:id' => 'customers#withdraw'
   end
 
-
+  get 'genres/search'
   root to: 'homes#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -28,7 +28,7 @@ class Admin::GenresController < ApplicationController
 
   def edit
     @genre = Genre.find(params[:id])
-    @secondgenres = @genre.secondgenre.all
+    @secondgenres = @genre.secondgenres.all
   end
 
   def update

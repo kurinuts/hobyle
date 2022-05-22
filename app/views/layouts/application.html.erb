@@ -7,7 +7,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= include_gon %>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -29,13 +29,16 @@
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
-              <%= link_to '投稿フォーム', new_event_path, class: 'nav-link text-white' %>
+              <%= link_to 'イベント投稿', new_event_path, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
               <%= link_to 'イベント一覧', events_path, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
               <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Memories', new_event_user_path, class: 'nav-link text-white' %>
             </li>
             <% elsif admin_signed_in? %>
             <li class="nav-item">
@@ -64,15 +67,29 @@
       </nav>
     </header>
     <div class="row p-0 m-0">
-      
+
       <div class="col-md-2 p-0 m-0">
         <div class="main-visual">
-          <h4>アウトドア・インドア・その他から１つずつ新着イベント羅列</h4>
-          <% @users.each do |user| %>
-            <p>
-              <%= user.email %>
-            </p>
-          <% end %>
+          <h3><strong>New Event</strong></h3>
+          <div class="main-contents">
+            <!--< @event1.each do |event| %>-->
+            <!--  < if event.genre.image.attached? %>-->
+            <!--  <= image_tag event.genre.image %>-->
+            <!--  < else %>-->
+            <!--  < end %>-->
+            <!--< end %>-->
+
+            <h4>アウトドア</h4>
+            <% @events.each do |event| %>
+            <%= event.title%>
+            <% end %>
+          </div>
+          <div class="main-contents">
+            <h4>インドア</h4>
+          </div>
+          <div class="main-contents">
+            <h4>スポーツ</h4>
+          </div>
         </div>
       </div>
       <div class="col-md-10 p-0 m-0">
@@ -99,6 +116,23 @@
   </body>
 
   <style>
+  .main-visual {
+    text-align: center;
+  }
+  .main-contents {
+    display: block;
+    height: 170px;
+  }
+
+  .main-contents > h4 {
+    background-color: burlywood;
+  }
+  
+  h3 {
+      background-color: darkkhaki;
+      text-align: center;
+      color: lemonchiffon;
+    }
 
   </style>
 </html>
