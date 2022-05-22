@@ -6,7 +6,7 @@
           <tr><h2><strong><%= @event.title %></strong></h2></tr>
           <tr>
             <th>日時</th>
-            <td><%= @event.title %></td>
+            <td><%= @event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
           </tr>
           <tr>
             <th>場所</th>
@@ -33,14 +33,18 @@
             <td><%= @event.remarks %></td>
           </tr>
           <tr>
-            <th>備考2</th>
+            <th>質問回答</th>
             <td><%= @event.second_remarks %></td>
           </tr>
-
         </table>
+        <% if @user_id == @event.user_id %>
+        <%= link_to "イベント内容を変更する", edit_event_path(@event), class: "btn btn-outline-success btn-block" %>
+        <% end %>
       </div>
       <div class="col-md-6">
         <table class="table", border=1 frame="box">
+          <tr><h1> </h1></tr>
+          <tr><h3><strong><%= @event.user.user_name %>さん主催</strong></h3>
           <tr>
             <th>プロフィール画像</th>
             <td>
@@ -69,18 +73,21 @@
           </tr>
           <tr>
             <th>人数</th>
-            <td><%= f.number_field :number %>
-            <%= hidden_field_tag :number, @event_user.member_count %>
+            <td><%= f.number_field :member_count %>
+            <%= hidden_field_tag :member_count, @event_user.member_count %>
             </td>
           </tr>
           <tr>
             <th>コメント</th>
-            <td><%= f.text_area :commenr %>
-            <%= hidden_field_tag :commenr, @event_user.application_comment %>
+            <td><%= f.text_area :application_comment %>
+            <%= hidden_field_tag :application_comment, @event_user.application_comment %>
             </td>
           </tr>
         </table>
-        <input type="submit" style="width: 30%; background-color: darkkhaki; " value="参加する" class="button">
+        <%= f.hidden_field :user_id, :value => @user.id %>
+        <%= f.hidden_field :event_id, :value => @event.id %>
+        <%= f.hidden_field :genre_id, :value => @genre.id %>
+        <%= f.submit "参加する"%>
           <% end %>
           <% else %>
           <table class="table">
@@ -89,18 +96,18 @@
           </tr>
           <tr>
             <th>人数</th>
-            <td><%= f.number_field :number %>
-            <%= hidden_field_tag :number, @event_user.member_count %>
+            <td><%= f.number_field :member_count %>
+            <%= hidden_field_tag :member_count, @event_user.member_count %>
             </td>
           </tr>
           <tr>
             <th>コメント</th>
-            <td><%= f.text_area :commenr %>
-            <%= hidden_field_tag :commenr, @event_user.application_comment %>
+            <td><%= f.text_area :application_comment %>
+            <%= hidden_field_tag :application_comment, @event_user.application_comment %>
             </td>
           </tr>
-        </table>
           <% end %>
+        </table>
           <h4>会員登録すると参加申請ができます</h4>
           <% end %>
       </div>
@@ -133,8 +140,13 @@
       padding: 5px;
       width: 100%;
     }
-    
+
     h4  {
       text-align: center;
     }
+
+    img {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
 </style>

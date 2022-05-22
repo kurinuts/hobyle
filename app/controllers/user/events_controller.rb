@@ -26,19 +26,25 @@ class User::EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @event_user = EventUser.new
+    @user = @event.user
+    @genre = @event.genre
+    # @secondgenre = @event.secondgenre_id
   end
 
   def index
-    @events = Event.all
+    @events = Event.page(params[:page])
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
     @event = Event.find(params[:id])
-    if @event.save
+    if @event.update(event_params)
       redirect_to events_path
+    else
+      render :edit
     end
   end
 

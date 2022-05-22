@@ -8,12 +8,12 @@
         <th>姓</th>
         <td>
           <div class="field">
-          <%= f.text_field :last_name %>
+          <%= f.text_field :last_name, placeholder: "田中" %>
         </td>
         <th>名</th>
         <td>
         <div class="field">
-        <%= f.text_field :first_name %>
+        <%= f.text_field :first_name, placeholder: "太郎" %>
         </td>
       </tr>
       <tr>
@@ -55,15 +55,15 @@
       </tr>
       <tr>
         <th>携帯電話番号</th>
-        <td><%= f.number_field :phone_number %></td>
+        <td><%= f.number_field :phone_number, placeholder: "ハイフンなし" %></td>
         <th></th>
         <td></td>
       </tr>
       <tr>
-        <th>お住まいの県名</th>
-        <td><%= f.text_field :address_free %></td>
+        <th>お住まいの都道府県名</th>
+        <td><%= f.text_field :address_free, placeholder: "青森県" %></td>
         <th>お住まいの市区町村名</th>
-        <td><%= f.text_field :address %></td>
+        <td><%= f.text_field :address, placeholder: "八戸市" %></td>
       </tr>
       <tr>
         <th>自己紹介文</th>
@@ -75,7 +75,6 @@
     <%= f.submit "新規登録" %>
   </div>
 <% end %>
-<%= render "devise/shared/links" %>
 
 <style>
   .table {

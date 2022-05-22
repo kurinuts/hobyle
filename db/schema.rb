@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2022_05_19_122307) do
   end
 
   create_table "admins", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "email", default: "1111@gmail.com", null: false
+    t.string "encrypted_password", default: "12345678", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -57,12 +57,12 @@ ActiveRecord::Schema.define(version: 2022_05_19_122307) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "event_id"
-    t.integer "member_count"
-    t.text "application_comment"
+    t.integer "member_count", default: 1, null: false
+    t.text "application_comment", default: "よろしくお願いします！"
     t.text "cancel_comment"
     t.string "applicated_title"
     t.text "applipated_comment"
-    t.integer "status"
+    t.integer "status", default: 0
   end
 
   create_table "events", force: :cascade do |t|

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-4">
       <h4>ジャンル投稿</h4>
       <div class="new-genres">
         <%= form_with model: Genre.new, url: admin_genres_path do |f| %>
@@ -9,7 +9,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-8">
       <table class="table">
         <tr>
           <th>ジャンル名</th>
@@ -27,7 +27,7 @@
           </td>
           <% @secondgenres.each do |secondgenre| %>
             <% if secondgenre.genre_id == genre.id %>
-              <td><%= secondgenre.name %></td>
+          <td><%= secondgenre.name %></td>
             <% end %>
           <% end %>
           <td>

@@ -1,28 +1,40 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
       <% if @user == current_user %>
+      <h4> </h4>
       <h4>Hello! <%= @user.user_name %> さん</h4>
-      趣味活スケジュール
-      <table>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="button1"><strong><%= link_to "趣味活スケジュール", user_path(current_user), :style=>"color: lightyellow;" %></strong></h4>
+          </div>
+          <div class="col-md-6">
+            <h4 class="button2"><strong><%= link_to "企画イベント歴", user_path(current_user), :style=>"color: lightyellow;" %></strong></h4>
+          </div>
+        </div>
+      </div>
+      <table class="table">
         <tr>
-          <th></th>
-          <th>日程</th>
-          <th>ジャンル</th>
+          <th>ステータス</th>
           <th>タイトル</th>
+          <th>日程</th>
           <th>主催者</th>
           <th></th>
         </tr>
+        <% @event_users.each do |event_user| %>
         <tr>
-          <td>主催者ユーザー画像</td>
-          <td>〇〇月●日</td>
-          <td>タイトル</td>
-          <td>ユーザー</td>
-          <td>詳細画面</td>
+          <td>参加前参加済み</td>
+          <td><%= event_user.event.title %></td>
+          <td><%= event_user.event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
+          <td><%= event_user.event.user.user_name%></td>
+          <td><%= link_to "詳細", event_user_path(event_user.id), class: "btn btn-outline-primary btn-block-xs" %></td>
         </tr>
+        <% end %>
       </table>
       <% else %>
+      <h4> </h4>
       <strong><%= @user.user_name %></strong>さんの企画イベント履歴
       <table class="table">
         <tr>
@@ -41,7 +53,7 @@
       <% end %>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <table class="table", border=1 frame="box">
         <tr>
           <th>プロフィール画像</th>
@@ -86,5 +98,24 @@ img {
 
 .table {
   margin-top: 10px;
+}
+.button1 {
+  background-color: burlywood;
+  color: white;
+  text-align: center;
+  height: 50px;
+  padding-top: 10px;
+  border-radius: 20%;
+}
+
+.button2 {
+  background-color: burlywood;
+  color: white;
+  text-align: center;
+  border-radius: 20%;
+}
+
+.link {
+  color: white;
 }
 </style>

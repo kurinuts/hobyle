@@ -1,0 +1,131 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table">
+          <tr><h1> </h1></tr>
+          <tr><h2><strong><%= @event_user.event.title %></strong></h2></tr>
+          <tr>
+            <th>主催者</th>
+            <td><%= @event_user.event.user.user_name %></td>
+          </tr>
+          <tr>
+            <th>日時</th>
+            <td><%= @event_user.event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
+          </tr>
+          <tr>
+            <th>場所</th>
+            <td><%= @event_user.event.place %></td>
+          </tr>
+          <tr>
+            <th>人数</th>
+            <td><%= @event_user.event.limit_number %> 人</td>
+          </tr>
+          <tr>
+            <th>時間幅</th>
+            <td><%= @event_user.event.all_time %> 時間</td>
+          </tr>
+          <tr>
+            <th>会費</th>
+            <td><%= @event_user.event.fee %> 円程度</td>
+          </tr>
+          <tr>
+            <th>持ち物</th>
+            <td><%= @event_user.event.preparation %></td>
+          </tr>
+          <tr>
+            <th>備考</th>
+            <td><%= @event_user.event.remarks %></td>
+          </tr>
+          <tr>
+            <th>備考2</th>
+            <td><%= @event_user.event.second_remarks %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <table class="table", border=1 frame="box">
+          <tr><h1> </h1></tr>
+          <tr><h2><strong>参加者コメント</strong></h2></tr>
+          <tr>
+            <th>プロフィール画像</th>
+            <td>
+              <% if @event_user.user.image.attached? %>
+              <%= image_tag @event_user.user.image, size: "100x100" %>
+              <% else %>
+              <%= image_tag 'no_image', size: "100x100" %>
+              <% end %>
+
+            </td>
+          </tr>
+          <tr>
+            <th>ユーザー名</th>
+            <td><%= @event_user.user.user_name %></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td><%= @event_user.user.user_introduction %></td>
+          </tr>
+        </table>
+        <table class="table">
+          <tr><h3><strong><%= current_user.user_name %> さんの<br>参加申請内容</strong></h3>
+          <%= form_with model: @event_user, url: event_user_path(@event_user), method: :patch do |f| %>
+          </tr>
+          <tr>
+            <th>ステータス</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>人数</th>
+            <td><%= f.number_field :member_count %>
+            </td>
+          </tr>
+          <tr>
+            <th>コメント</th>
+            <td><%= f.text_area :application_comment %>
+            </td>
+          </tr>
+        </table>
+        <%= f.submit '変更内容を保存する', class: "btn btn-outline-success" %><% end %>
+        <%= link_to "削除する", event_user_path(@event_user), method: :delete, class: "btn btn-outline-danger btn-block-xs" %>
+        本当は「削除ページ」に遷移して「キャンセル理由」を追記してからdestroyしたい
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    h2 {
+      background-color: darkseagreen;
+      color: white;
+      text-align: center;
+    }
+
+    .button {
+      color: lemonchiffon;
+      padding: 5px;
+      border: 0;
+      position: relative;
+    }
+
+    .table {
+      margin-top: 10px;
+
+    }
+
+    h3 {
+      background-color: darkkhaki;
+      text-align: center;
+      color: lemonchiffon;
+      padding: 5px;
+      width: 100%;
+    }
+
+    h4  {
+      text-align: center;
+    }
+
+    img {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+</style>

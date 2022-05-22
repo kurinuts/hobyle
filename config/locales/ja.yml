@@ -1,11 +1,13 @@
-  ja:
-    enums:
-      user:
-        age:
-          age20: "20代"
-          age30: "30代"
-          age40: "40代"
-          age50: "50代"
-          age60: "60代"
-          age70: "70代"
-          age40: "80代"
+ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+  enums:
+    event_user:
+      status_method:
+        application: "申請済み"
+        participated: "参加決定！"
+        memory: "参加済"
+    user:
+      age:

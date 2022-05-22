@@ -1,0 +1,19 @@
+<h4>参加予定イベント</h4>
+<table class="table">
+  <tr>
+    <th>サブジャンル</th>
+    <th>タイトル</th>
+    <th>日時</th>
+    <th>参加予定人数</th>
+    <th>開催場所</th>
+    <th>会費</th>
+    <th>開催ユーザー</th>
+  <tr>
+    <% @event_users.each do |event_user| %>
+    <td></td>
+    <td></td>
+    <td><%= event_user.application_comment %></td>
+    <td></td>
+    <td></td>
+  </tr>
+    <% end %>

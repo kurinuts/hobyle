@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
 
   def main_visual
     @users = User.all
+    @events = Event.all.order(created_at: :desc).limit(1)
+    @genres = Genre.all
+    # @genre = @event.genre
+    # @event1 = Event.where(genre_id: @genre.id)
+    # @event2 = Event.where(genre_id: @genre.id)
+    # @event3 = Event.where(genre_id: @genre.id)
   end
 
   protected
@@ -13,6 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def top
+    @user = current_user
   end
 
 end
