@@ -4,14 +4,14 @@
     <div class="col-md-7">
       <% if @user == current_user %>
       <h4> </h4>
-      <h4>Hello! <%= @user.user_name %> さん</h4>
+      <h2><strong>Hello! <%= @user.user_name %> さん</strong></h2>
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h4 class="button1"><strong><%= link_to "趣味活スケジュール", user_path(current_user), :style=>"color: lightyellow;" %></strong></h4>
+            <h4 class="button1"><strong><%= link_to "趣味活スケジュール", user_path(current_user), :style=>"color: sienna;" %></strong></h4>
           </div>
           <div class="col-md-6">
-            <h4 class="button2"><strong><%= link_to "企画イベント歴", user_path(current_user), :style=>"color: lightyellow;" %></strong></h4>
+            <h4 class="button2"><strong><%= link_to "企画イベント歴", my_events_path, :style=>"color: sienna;" %></strong></h4>
           </div>
         </div>
       </div>
@@ -35,7 +35,8 @@
       </table>
       <% else %>
       <h4> </h4>
-      <strong><%= @user.user_name %></strong>さんの企画イベント履歴
+      <h2><strong><%= @user.user_name %></strong>さんの企画イベント履歴</h2>
+
       <table class="table">
         <tr>
           <th>開催日</th>
@@ -43,14 +44,16 @@
           <th>場所</th>
           <th></th>
         </tr>
+        <% @events.each do |event| %>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><%= event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
+          <td><%= link_to event_path(event) do %><%= event.title %><% end %></td>
+          <td><%= event.place %></td>
           <td>詳細画面</td>
         </tr>
+        <% end %>
       </table>
-      <% end %>
+        <% end %>
 
     </div>
     <div class="col-md-5">
@@ -96,24 +99,32 @@ img {
   object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
 }
 
+h2 {
+  background-color: tan;
+  color: lightyellow;
+  text-align: center;
+}
+
 .table {
   margin-top: 10px;
 }
 .button1 {
-  background-color: burlywood;
+  background-color: wheat;
   color: white;
   text-align: center;
   height: 50px;
   padding-top: 10px;
-  border-radius: 20%;
+  border-radius: 10%;
 }
 
 .button2 {
-  background-color: burlywood;
+  background-color: wheat;
   color: white;
   text-align: center;
-  border-radius: 20%;
+  border-radius: 10%;
 }
+
+
 
 .link {
   color: white;

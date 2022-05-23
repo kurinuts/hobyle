@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     # registrations: 'admin/registrations'
   }
 
+  # get '/my_events' => 'user/events#my_events'
+
   namespace :admin do
     resources :events
     # resources :sessions
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
      get "subgenre" => "events#subgenre"
     resources:users
     resources :events
+     get "my_events" => "events#my_events"
     resources :event_users
     get "event_users/cancel" => "event_users#destroy"
     # post 'orders/confirm' => 'orders#confirm'

@@ -11,15 +11,14 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @event_users = EventUser.all
+    @event_users = EventUser.where(user_id: current_user.id)
+    @events = Event.where(user_id: @user.id)
   end
 
-  def index
-    @genres = Genre.all
-    @events = Event.all
-    @applications = Application.all
-    @users = User.all
-  end
+  # def history
+  #   @user = User.find(params[:id])
+  #   @event_users = EventUser.all
+  # end
 
   def edit
     @user = User.find(params[:id])

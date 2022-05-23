@@ -48,6 +48,10 @@ class User::EventsController < ApplicationController
     end
   end
 
+  def my_events
+    @events = Event.where(user_id: current_user.id)
+  end
+
   private
   def event_params
   params.require(:event).permit(:genre_id, :secondgenre_id, :title, :all_time, :introduction, :limit_number, :fee, :place, :preparation, :remarks, :second_remarks, :question, :is_active).merge(daytime: params[:daytime])
