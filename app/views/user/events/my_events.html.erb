@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7">
-      <% if @user == current_user %>
       <h4> </h4>
-      <h4>Hello! <%= @user.user_name %> さん</h4>
+      <h4>Hello! <%= current_user.user_name %> さん</h4>
       <div class="container">
         <div class="row">
           <div class="col-md-6">
@@ -25,14 +24,13 @@
         <% @events.each do |event| %>
         <tr>
           <td>参加前参加済み</td>
-          <td><%= event.event.title %></td>
-          <td><%= event.event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
-          <td><%= event.event.user.user_name%></td>
-          <td><%= link_to "詳細", event_user_path(event_user.id), class: "btn btn-outline-primary btn-block-xs" %></td>
+          <td><%= event.title %></td>
+          <td><%= event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
+          <td><%= event.user.user_name%></td>
+          <td><%= link_to "詳細", event_path(event.id), class: "btn btn-outline-primary btn-block-xs" %></td>
         </tr>
         <% end %>
       </table>
-      <% end %>
 
     </div>
     <div class="col-md-5">
@@ -40,8 +38,8 @@
         <tr>
           <th>プロフィール画像</th>
           <td>
-          <% if @user.image.attached? %>
-          <%= image_tag @user.image, size: "100x100" %>
+          <% if current_user.image.attached? %>
+          <%= image_tag current_user.image, size: "100x100" %>
           <% else %>
           <%= image_tag 'no_image', size: "100x100" %>
           <% end %>
@@ -49,20 +47,20 @@
         </tr>
         <tr>
           <th>ユーザー名</th>
-          <td><%= @user.user_name %><%= @user.age %></td>
+          <td><%= current_user.user_name %><%= current_user.age %></td>
         </tr>
         <tr>
           <th>お住まい</th>
-          <td><%= @user.address_free %> <%= @user.address %></td>
+          <td><%= current_user.address_free %> <%= current_user.address %></td>
         </tr>
         <tr>
           <th>自己紹介文</th>
-          <td><%= @user.user_introduction %></td>
+          <td><%= current_user.user_introduction %></td>
         </tr>
       </table>
       <div class="edit">
-        <% if @user == current_user %>
-        <%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
+        <% if current_user %>
+        <%= link_to edit_user_path(current_user), class: "btn btn-secondary btn-block" do %>
         <i class="fas fa-user-cog fa-lg"></i>
         <% end %><% end %>
       </div>
@@ -85,7 +83,7 @@ img {
   background-color: burlywood;
   color: white;
   text-align: center;
-  border-radius: 20%;
+  border-radius: 10%;
 }
 
 .button2 {
@@ -94,7 +92,7 @@ img {
   text-align: center;
   height: 50px;
   padding-top: 10px;
-  border-radius: 20%;
+  border-radius: 10%;
 }
 
 .link {

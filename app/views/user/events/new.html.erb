@@ -1,4 +1,5 @@
-<h4>NEWイベント</h4>
+<h2> </h2>
+<h2><strong>NEWイベント</strong></h2>
 <div class="new-event">
   <%= form_with model: @event, url: events_path do |f| %>
   <table class="table">
@@ -33,7 +34,13 @@
   <%= f.submit 'NEWイベント投稿' %>
   <% end %>
 </div>
-
+<style>
+  h2 {
+  background-color: burlywood;
+  color: lightyellow;
+  text-align: center;
+}
+</style>
 
 
 
