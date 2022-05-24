@@ -54,6 +54,6 @@ class User::EventsController < ApplicationController
 
   private
   def event_params
-  params.require(:event).permit(:genre_id, :secondgenre_id, :title, :all_time, :introduction, :limit_number, :fee, :place, :preparation, :remarks, :second_remarks, :question, :is_active).merge(daytime: params[:daytime])
+  params.require(:event).permit(:genre_id, :secondgenre_id, :title, :all_time, :introduction, :limit_number, :fee, :place, :preparation, :remarks, :second_remarks, :question, :is_active).merge(daytime: params[:event][:daytime])
   end
 end

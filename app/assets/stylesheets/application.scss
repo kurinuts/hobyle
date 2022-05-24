@@ -22,10 +22,25 @@ body {
   padding-bottom: 103px;
 }
 
+.navbar {
+  background-color: #808000;
+}
+
+
 .main-visual {
   width: 100%; /* 横幅350px */
   height: calc(100vh - 84.8px - 103px); /* 親の高さに揃える */
   background-color: #D2B48C; /* 背景色gold */
+}
+
+
+footer {
+  width: 100%;
+  background-color: #808000;
+}
+
+.col-md-10 {
+  background-color: antiquewhite;
 }
 
 @media screen and (max-width: 1199.98px) {}
@@ -38,16 +53,3 @@ body {
   }
 }
 @media screen and (max-width: 575.98px) {}
-
-nav {
-  background-color: #808000;
-}
-
-footer {
-  width: 100%;
-  background-color: #808000;
-}
-
-.col-md-10 {
-  background-color: antiquewhite;
-}

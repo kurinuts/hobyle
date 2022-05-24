@@ -37,7 +37,7 @@
             <td><%= @event.second_remarks %></td>
           </tr>
         </table>
-        <% if @user_id == @event.user_id %>
+        <% if @user == current_user %>
         <%= link_to "イベント内容を変更する", edit_event_path(@event), class: "btn btn-outline-success btn-block" %>
         <% end %>
       </div>
@@ -67,7 +67,17 @@
 
         <% if @user == current_user %>ログインユーザーがイベント投稿ユーザーだった場合
         <table class="table">
+          <tr>
+            <th>予定人数</th><td><%= @event.limit_number %></td>
+            <th>今の参加人数</th><td>ninn 
+            </td>
+          </tr>
+        </table>
+        <div class="check">
+          <%= form_with model: @event, url: event_path(@event), local: true do |f| %><% end %>
+        </div>
         <% elsif user_signed_in? %>別ユーザーがログイン状態の場合 ※申請済みのユーザーには「申請済みです」の表示をしたい
+        <table class="table">
           <tr><h3><strong>参加申請</strong></h3></tr>
           <%= form_with model: @event_user, url: event_users_path, method: :post do |f| %>
           <tr>

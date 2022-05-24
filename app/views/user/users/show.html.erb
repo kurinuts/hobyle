@@ -15,21 +15,19 @@
           </div>
         </div>
       </div>
-      <table class="table">
+      <table class="table" style="font-size : 15px;">
         <tr>
           <th>ステータス</th>
           <th>タイトル</th>
           <th>日程</th>
           <th>主催者</th>
-          <th></th>
         </tr>
         <% @event_users.each do |event_user| %>
         <tr>
           <td>参加前参加済み</td>
-          <td><%= event_user.event.title %></td>
+          <td><%= link_to event_user_path(event_user.id) do %><%= event_user.event.title %><% end %></td>
           <td><%= event_user.event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
           <td><%= event_user.event.user.user_name%></td>
-          <td><%= link_to "詳細", event_user_path(event_user.id), class: "btn btn-outline-primary btn-block-xs" %></td>
         </tr>
         <% end %>
       </table>
@@ -110,7 +108,6 @@ h2 {
 }
 .button1 {
   background-color: wheat;
-  color: white;
   text-align: center;
   height: 50px;
   padding-top: 10px;
@@ -119,7 +116,6 @@ h2 {
 
 .button2 {
   background-color: wheat;
-  color: white;
   text-align: center;
   border-radius: 10%;
 }
