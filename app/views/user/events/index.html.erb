@@ -1,12 +1,13 @@
 <h2> </h2>
 <h2><strong>イベント一覧</strong></h2>
-<table class="table">
+<table class="table" style="font-size : 15px;">
   <tr>
     <th>ジャンル</th>
     <th>limit</th>
     <th>タイトル</th>
     <th>日時</th>
-    <th>予定人数</th>
+    <th>募集人数</th>
+    <th>参加人数</th>
     <th>開催場所</th>
     <th>会費</th>
     <th>開催ユーザー</th>
@@ -19,6 +20,7 @@
     <td><%= event.daytime.strftime('%Y年%m月%d日 %H:%M') %>
     </td>
     <td><%= event.limit_number %> 人</td>
+    <td></td>
     <td><%= event.place %></td>
     <td><%= event.fee %> 円程度</td>
     <td>
@@ -31,16 +33,14 @@
   </tr>
       <% end %>
 </table>
+<div class="pagenate">
   <%= paginate @events %>
+</div>
 
 <style>
   img {
   border-radius: 50%;
   object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
-}
-
-  .pagenate {
-    text-color: white;
 }
 
   h2 {
