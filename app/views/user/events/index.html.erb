@@ -3,7 +3,7 @@
 <table class="table" style="font-size : 15px;">
   <tr>
     <th>ジャンル</th>
-    <th>limit</th>
+    <th></th>
     <th>タイトル</th>
     <th>日時</th>
     <th>募集人数</th>
@@ -15,7 +15,7 @@
   <tr>
     <% @events.each do |event| %>
     <td><%= event.genre.name %></td>
-    <td>募集・締切</td>
+    <td><%= event.is_active ? '募集中' : '募集終了' %></td>
     <td><%= link_to event_path(event) do %><%= event.title %><% end %></td>
     <td><%= event.daytime.strftime('%Y年%m月%d日 %H:%M') %>
     </td>

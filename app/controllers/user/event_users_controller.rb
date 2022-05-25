@@ -19,9 +19,9 @@ class User::EventUsersController < ApplicationController
 
   def show
     # @members = @event_user.user
-    @event_users = EventUser.all
     @event_user = EventUser.find(params[:id])
-    @user = @event_user.event.user_id
+    @event_users = EventUser.where(event_id: @event_user.event_id)
+    @user = @event_user.event.user
   end
 
   def index

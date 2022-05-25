@@ -43,6 +43,25 @@
         </table>
       </div>
       <div class="col-md-6">
+        <% if @user %>投稿ユーザーにしかステータスは出さないようにしたい
+        <table class="table", border=1 frame="box">
+          <tr><h1> </h1></tr>
+          <tr><h2><strong>参加者コメント</strong></h2></tr>
+          <tr>
+            <th>ユーザー</th>
+            <th>コメント・質問</th>
+            <th>ステータス</th>
+          </tr>
+          <% @event_users.each do |event_user| %>
+          <tr>
+            <td><%= event_user.user.user_name %></td>
+            <td><%= event_user.application_comment %></td>
+            <td><%= EventUser.statuses_i18n[event_user.status] %></td>
+          </tr>
+          <% end %>
+        </table>
+
+        <% else %>
         <table class="table", border=1 frame="box">
           <tr><h1> </h1></tr>
           <tr><h2><strong>参加者コメント</strong></h2></tr>
@@ -57,6 +76,7 @@
           </tr>
           <% end %>
         </table>
+        <% end %>
 
         <% if current_user %>
         <table class="table">
@@ -65,7 +85,7 @@
           </tr>
           <tr>
             <th>ステータス</th>
-            <td></td>
+            <td><%= EventUser.statuses_i18n[@event_user.status] %></td>
           </tr>
           <tr>
             <th>人数</th>

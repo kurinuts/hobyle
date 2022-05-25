@@ -24,7 +24,7 @@
         </tr>
         <% @event_users.each do |event_user| %>
         <tr>
-          <td>参加前参加済み</td>
+          <td><%= EventUser.statuses_i18n[event_user.status] %></td>
           <td><%= link_to event_user_path(event_user.id) do %><%= event_user.event.title %><% end %></td>
           <td><%= event_user.event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
           <td><%= event_user.event.user.user_name%></td>

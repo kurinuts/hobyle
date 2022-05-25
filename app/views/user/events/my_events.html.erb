@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-6">
       <h4> </h4>
       <h2><strong>Hello! <%= current_user.user_name %> さん</strong></h2>
       <div class="container">
@@ -18,20 +18,18 @@
           <th>ステータス</th>
           <th>タイトル</th>
           <th>日程</th>
-          <th>主催者</th>
         </tr>
         <% @events.each do |event| %>
         <tr>
-          <td>募集中募集終了</td>
-          <td><%= link_to event_path(event.id) do %><%= event.title %><% end %></td>
+          <td><%= event.is_active ? '募集中' : '募集終了' %></td>
+          <td><%= link_to event_path(event) do %><%= event.title %><% end %></td>
           <td><%= event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
-          <td><%= event.user.user_name%></td>
         </tr>
         <% end %>
       </table>
 
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
       <table class="table", border=1 frame="box">
         <tr>
           <th>プロフィール画像</th>

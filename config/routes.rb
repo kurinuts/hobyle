@@ -24,8 +24,10 @@ Rails.application.routes.draw do
   scope module: :user do
      get "subgenre" => "events#subgenre"
     resources:users
-    resources :events
-     get "my_events" => "events#my_events"
+    resources :events do
+      patch "active_change" => "events#active_change"
+    end
+    get "my_events" => "events#my_events"
     resources :event_users
     get "event_users/cancel" => "event_users#destroy"
     # post 'orders/confirm' => 'orders#confirm'

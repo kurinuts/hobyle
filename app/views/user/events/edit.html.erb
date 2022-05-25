@@ -1,38 +1,52 @@
 <%= form_with model: @event, url: event_path(@event) do |f| %>
 <table class="table">
   <tr><h1> </h1></tr>
-  <tr><h2><strong><%= f.text_field :title %></strong></h2></tr>
+  <tr><h2><strong><%= f.text_field :title, placeholder: "タイトル" %></strong></h2></tr>
   <tr>
-    <th>日時(必須)</th>
-    <td><input type="datetime-local" name="daytime" min="2017-04-01T00:00" max="2023-12-31T23:59"></td>
+    <th>日時</th>
+    <td><%= @event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
+    <td><p>※日時は変更できません</p></td>
   </tr>
   <tr>
     <th>場所</th>
-    <td><%= f.text_field :place %></td>
-  </tr>
-  <tr>
+    <td><%= f.text_field :place, placeholder: "URL,開催住所,「自宅」など" %></td>
     <th>人数</th>
-    <td><%= f.number_field :limit_number %> 人</td>
+    <td><%= f.number_field :limit_number, min: "0" %> 人</td>
   </tr>
   <tr>
     <th>時間幅</th>
-    <td><%= f.number_field :all_time %> 時間</td>
-  </tr>
-  <tr>
+    <td><%= f.number_field :all_time, min: "0" %> 時間</td>
     <th>会費</th>
-    <td><%= f.number_field :fee %> 円程度</td>
+    <td><%= f.number_field :fee, min: "0" %> 円程度</td>
   </tr>
   <tr>
     <th>持ち物</th>
     <td><%= f.text_field :preparation %></td>
-  </tr>
-  <tr>
     <th>備考</th>
     <td><%= f.text_area :remarks %></td>
   </tr>
   <tr>
-    <th>備考2</th>
-    <td><%= f.text_area :second_remarks %></td>
+    <th>質問回答</th>
+    <td><%= f.text_area :second_remarks, placeholder: "質問があった場合はこちらに回答を記入ください" %></td>
+    <th>ステータス</th>
+    <td>
+      <div class ="check">
+        <%= f.radio_button :is_active, "true", checked: @event.is_active.present? ? true : false %>
+        <%= f.label :is_active, "募集中" %>
+        <%= f.radio_button :is_active, "false", checked: @event.is_active.blank? ? true : false %>
+        <%= f.label :is_active, "募集終了" %><br>
+        <%= f.hidden_field :daytime, :value => @event.daytime %>
+      </div>
+    </td>
   </tr>
 </table>
 <%= f.submit '変更内容を保存する', class: "btn btn-outline-success" %><% end %>
+<%= link_to "削除", event_path(@event), method: :delete, class: "btn btn-outline-danger btn-block-xs" %>
+<style>
+  p {
+    color: red;
+  }
+  .check {
+    text-align:;
+  }
+</style>

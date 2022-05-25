@@ -18,7 +18,9 @@ class User::EventsController < ApplicationController
     @genres = Genre.all
     @event = Event.new(event_params)
     @event.user_id = current_user.id
-    if @event.save
+    @event.is_active = true
+    # byebug
+    if @event.save!
     redirect_to events_path
     end
   end
@@ -41,6 +43,7 @@ class User::EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    # byebug
     if @event.update(event_params)
       redirect_to events_path
     else
@@ -52,8 +55,33 @@ class User::EventsController < ApplicationController
     @events = Event.where(user_id: current_user.id)
   end
 
+  def active_change
+    @event = Event.find(params[:event_id])
+    # byebug
+    if @event.update(update_is_active)
+      redirect_to event_path(@event)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+  @event = Event.find(params[:id])
+  if @event.destroy
+  flash[:notice] = "successfully event_delete"
+  redirect_to events_path
+  else
+  render :index
+  end
+  end
+
   private
+
   def event_params
-  params.require(:event).permit(:genre_id, :secondgenre_id, :title, :all_time, :introduction, :limit_number, :fee, :place, :preparation, :remarks, :second_remarks, :question, :is_active).merge(daytime: params[:event][:daytime])
+    params.require(:event).permit(:genre_id, :secondgenre_id, :title, :all_time, :introduction, :limit_number, :fee, :place, :preparation, :remarks, :second_remarks, :question, :is_active).merge(daytime: params[:event][:daytime])
+  end
+
+  def update_is_active
+    params.require(:event).permit(:is_active)
   end
 end

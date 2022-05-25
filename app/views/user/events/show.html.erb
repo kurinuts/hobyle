@@ -5,8 +5,17 @@
           <tr><h1> </h1></tr>
           <tr><h2><strong><%= @event.title %></strong></h2></tr>
           <tr>
+            <th>ステータス</th>
+            <td>
+              <!--<% if @event.is_active %>募集中-->
+              <!--<% else %>募集終了-->
+              <!--<% end %>-->
+              <%= @event.is_active ? '募集中' : '募集終了' %>
+            </td>
+          </tr>
+          <tr>
             <th>日時</th>
-            <td><%= @event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
+            <td><%= @event.daytime.blank? ? "" : @event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
           </tr>
           <tr>
             <th>場所</th>
@@ -69,12 +78,19 @@
         <table class="table">
           <tr>
             <th>予定人数</th><td><%= @event.limit_number %></td>
-            <th>今の参加人数</th><td>ninn 
+            <th>今の参加人数</th><td>ninn
             </td>
           </tr>
         </table>
         <div class="check">
-          <%= form_with model: @event, url: event_path(@event), local: true do |f| %><% end %>
+          <%= form_with model: @event, url: event_active_change_path(@event), local: true do |f| %>
+          <%= f.radio_button :is_active, "true", checked: @event.is_active.present? ? true : false %>
+          <%= f.label :is_active, "募集中" %>
+          <%= f.radio_button :is_active, "false", checked: @event.is_active.blank? ? true : false %>
+          <%= f.label :is_active, "募集終了" %><br>
+          <%#= f.hidden_field :daytime, :value => @event.daytime %>
+          <%= f.submit "更新する", class: "btn btn-info" %>
+          <% end %>
         </div>
         <% elsif user_signed_in? %>別ユーザーがログイン状態の場合 ※申請済みのユーザーには「申請済みです」の表示をしたい
         <table class="table">
