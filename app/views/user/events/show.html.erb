@@ -5,6 +5,10 @@
           <tr><h1> </h1></tr>
           <tr><h2><strong><%= @event.title %></strong></h2></tr>
           <tr>
+            <th>主催者</th>
+            <td><%= @event.user.user_name%></td>
+          </tr>
+          <tr>
             <th>ステータス</th>
             <td>
               <!--<% if @event.is_active %>募集中-->
@@ -51,34 +55,48 @@
         <% end %>
       </div>
       <div class="col-md-6">
-        <table class="table", border=1 frame="box">
+          <% if @user == @event.user %>投稿ユーザーにしかステータスは出さないようにしたい
+        <table class="table", border=1 frame="box" style="font-size : 15px;">
           <tr><h1> </h1></tr>
-          <tr><h2><strong><%= @event.user.user_name %>さん主催</strong></h2>
+          <tr><h2><strong>参加者コメント</strong></h2></tr>
           <tr>
-            <th>プロフィール画像</th>
-            <td>
-              <% if @event.user.image.attached? %>
-              <%= image_tag @event.user.image, size: "100x100" %>
-              <% else %>
-              <%= image_tag 'no_image', size: "100x100" %>
-              <% end %>
+            <th>ユーザー</th>
+            <th>コメント・質問</th>
+            <th>ステータス</th>
+          </tr>
+          <% @event.event_users.each do |event_user| %>
+          <tr>
+            <td><%= event_user.user.user_name %></td>
+            <td><%= event_user.application_comment %></td>
+            <td class="check" id="participated_<%=event_user.id %>">
+              <%= render "participated_form", event_user:event_user %>
             </td>
           </tr>
-          <tr>
-            <th>ユーザー名</th>
-            <td><%= @event.user.user_name %></td>
-          </tr>
-          <tr>
-            <th>自己紹介</th>
-            <td><%= @event.user.user_introduction %></td>
-          </tr>
+          <% end %>
         </table>
 
-        <% if @user == current_user %>ログインユーザーがイベント投稿ユーザーだった場合
+        <% else %>
+        <table class="table", border=1 frame="box">
+          <tr><h1> </h1></tr>
+          <tr><h2><strong>参加者コメント</strong></h2></tr>
+          <tr>
+            <th>ユーザー</th>
+            <th>コメント・質問</th>
+          </tr>
+          <% @event_users.each do |event_user| %>
+          <tr>
+            <td><%= event_user.user.user_name %></td>
+            <td><%= event_user.application_comment %></td>
+          </tr>
+          <% end %>
+        </table>
+        <% end %>
+
+        <% if @user == current_user %>
         <table class="table">
           <tr>
             <th>予定人数</th><td><%= @event.limit_number %></td>
-            <th>今の参加人数</th><td>ninn
+            <th>今の参加人数</th><td>人
             </td>
           </tr>
         </table>
@@ -90,9 +108,11 @@
           <%= f.label :is_active, "募集終了" %><br>
           <%#= f.hidden_field :daytime, :value => @event.daytime %>
           <%= f.submit "更新する", class: "btn btn-info" %>
+          <%#= link_to event_user_path(event_user.id) do %><%#= "詳細" %><%# end %>
           <% end %>
         </div>
-        <% elsif user_signed_in? %>別ユーザーがログイン状態の場合 ※申請済みのユーザーには「申請済みです」の表示をしたい
+        <% elsif user_signed_in? %>
+        <% unless @event.event_users.exists?(user_id: current_user.id) %>
         <table class="table">
           <tr><h3><strong>参加申請</strong></h3></tr>
           <%= form_with model: @event_user, url: event_users_path, method: :post do |f| %>
@@ -109,10 +129,14 @@
             </td>
           </tr>
         </table>
-        <%= f.hidden_field :user_id, :value => @user.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :event_id, :value => @event.id %>
         <%= f.hidden_field :genre_id, :value => @genre.id %>
         <%= f.submit "参加する"%>
+          <% end %>
+          <% else %>
+          <h4>参加申請済みです</h4>
+          <%= link_to "参加内容確認", event_user_path(@event_user) %>
           <% end %>
         <% else %>
         <table class="table">
@@ -138,6 +162,12 @@
       </div>
     </div>
   </div>
+
+
+<div class="col-md-6">
+
+
+</div>
 
   <style>
     h2 {

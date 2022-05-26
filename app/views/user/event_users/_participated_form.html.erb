@@ -1,0 +1,12 @@
+<strong><%= EventUser.statuses_i18n[event_user.status] %></strong>
+<% if event_user.status == "application" && event_user.event.user_id == current_user.id %>
+  <%= form_with model: event_user, url: event_user_path(event_user), method: :patch, local: false do |f| %>
+    <%= f.hidden_field :status, value: "participated" %>
+    <%= f.submit "参加許可", class: "btn btn-info" %>
+  <% end %>
+<% elsif event_user.status == "participated" && event_user.event.user_id == current_user.id %>
+  <%= form_with model: @event_user, url: event_user_path(@event_user), method: :patch, local: false do |f| %>
+  <%= f.hidden_field :status, value: "memory" %>
+  <%= f.submit "参加済み", class: "btn btn-info" %>
+  <% end %>
+<% end %>

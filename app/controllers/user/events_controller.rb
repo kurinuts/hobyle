@@ -27,10 +27,16 @@ class User::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @event_user = EventUser.new
     @user = @event.user
     @genre = @event.genre
+    if @event.event_users.exists?(user_id: current_user.id)
+      @event_user = @event.event_users.find_by(user_id: current_user.id)
+      #参加していたらイベントユーザーに飛ぶ
+    else
+      #参加していなかったら、new（新規）に
+    @event_user = EventUser.new
     # @secondgenre = @event.secondgenre_id
+    end
   end
 
   def index
@@ -50,7 +56,7 @@ class User::EventsController < ApplicationController
       render :edit
     end
   end
-
+  
   def my_events
     @events = Event.where(user_id: current_user.id)
   end

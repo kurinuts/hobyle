@@ -11,7 +11,7 @@
             <h4 class="button1"><strong><%= link_to "趣味活スケジュール", user_path(current_user), :style=>"color: sienna;" %></strong></h4>
           </div>
           <div class="col-md-6">
-            <h4 class="button2"><strong><%= link_to "企画イベント歴", my_events_path, :style=>"color: sienna;" %></strong></h4>
+            <h4 class="button2"><strong><%= link_to "企画イベント歴", users_my_events_path, :style=>"color: sienna;" %></strong></h4>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
         </tr>
         <% @event_users.each do |event_user| %>
         <tr>
-          <td><%= EventUser.statuses_i18n[event_user.status] %></td>
+          <td><strong><%= EventUser.statuses_i18n[event_user.status] %></strong></td>
           <td><%= link_to event_user_path(event_user.id) do %><%= event_user.event.title %><% end %></td>
           <td><%= event_user.event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
           <td><%= event_user.event.user.user_name%></td>
@@ -37,17 +37,18 @@
 
       <table class="table">
         <tr>
-          <th>開催日</th>
+          <th></th>
           <th>タイトル</th>
+          <th>開催日</th>
           <th>場所</th>
           <th></th>
         </tr>
         <% @events.each do |event| %>
         <tr>
-          <td><%= event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
+          <td><strong><%= event.is_active ? '募集中' : '募集終了' %></strong></td>
           <td><%= link_to event_path(event) do %><%= event.title %><% end %></td>
+          <td><%= event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
           <td><%= event.place %></td>
-          <td>詳細画面</td>
         </tr>
         <% end %>
       </table>

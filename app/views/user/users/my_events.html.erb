@@ -9,7 +9,7 @@
             <h4 class="button1"><strong><%= link_to "趣味活スケジュール", user_path(current_user), :style=>"color: sienna;" %></strong></h4>
           </div>
           <div class="col-md-6">
-            <h4 class="button2"><strong><%= link_to "企画イベント歴", my_events_path, :style=>"color: sienna;" %></strong></h4>
+            <h4 class="button2"><strong><%= link_to "企画イベント歴", users_my_events_path, :style=>"color: sienna;" %></strong></h4>
           </div>
         </div>
       </div>
@@ -22,7 +22,8 @@
         <% @events.each do |event| %>
         <tr>
           <td><%= event.is_active ? '募集中' : '募集終了' %></td>
-          <td><%= link_to event_path(event) do %><%= event.title %><% end %></td>
+          <td><%= link_to event_path(event) do %><%= event.title %><% end %>
+          </td>
           <td><%= event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
         </tr>
         <% end %>

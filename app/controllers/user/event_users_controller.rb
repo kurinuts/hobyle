@@ -20,12 +20,17 @@ class User::EventUsersController < ApplicationController
   def show
     # @members = @event_user.user
     @event_user = EventUser.find(params[:id])
-    @event_users = EventUser.where(event_id: @event_user.event_id)
+    @event_users = EventUser.where(event_id: @event_user.event_id).where.not(user_id: current_user.id)
     @user = @event_user.event.user
   end
 
   def index
     @event_users = EventUser.all
+  end
+
+
+  def _participated_form
+    @event_user = EventUser.find(params[:id])
   end
 
   def edit
@@ -34,12 +39,12 @@ class User::EventUsersController < ApplicationController
 
   def update
     @event_user = EventUser.find(params[:id])
-    @event_user.update(event_user_params)
-    if @event_user.save
-      redirect_to event_user_path(@event_user.id)
-    else
-      render :edit
-    end
+    @event_user.update(status: "participated")
+    # if @event_user.save
+    #   redirect_to event_user_path(@event_user.id)
+    # else
+    #   render :edit
+    # end
   end
 
   def cancel
