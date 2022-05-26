@@ -85,8 +85,8 @@
             </td>
           </tr>
         </table>
-        <%= f.submit '変更内容を保存する', class: "btn btn-outline-success" %><% end %>
-        <%= link_to "削除する", event_user_path(@event_user), method: :delete, class: "btn btn-outline-danger btn-block-xs" %>
+        <%= f.submit '更新する', class: "btn btn-outline-success" %><% end %>
+        <%= link_to "申請キャンセル", event_user_path(@event_user), method: :delete, class: "btn btn-outline-danger btn-block-xs" %>
         本当は「削除ページ」に遷移して「キャンセル理由」を追記してからdestroyしたい
         </table>
       </div>

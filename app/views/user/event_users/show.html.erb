@@ -44,7 +44,7 @@
       </div>
       <div class="col-md-6">
         <% if @user %>投稿ユーザーにしかステータスは出さないようにしたい
-        <table class="table", border=1 frame="box">
+        <table class="table", border=1 frame="box" style="font-size : 15px;">
           <tr><h1> </h1></tr>
           <tr><h2><strong>参加者コメント</strong></h2></tr>
           <tr>
@@ -56,7 +56,9 @@
           <tr>
             <td><%= event_user.user.user_name %></td>
             <td><%= event_user.application_comment %></td>
-            <td><%= EventUser.statuses_i18n[event_user.status] %></td>
+            <td class="check" id="participated_<%=event_user.id %>">
+              <%= render "participated_form", event_user:event_user %>
+            </td>
           </tr>
           <% end %>
         </table>
@@ -81,11 +83,15 @@
         <% if current_user %>
         <table class="table">
           <tr><h3><strong><%= current_user.user_name %> さんの<br>参加申請内容</strong></h3>
-          <%= form_with model: @event_user, url: event_users_path, method: :post do |f| %>
           </tr>
           <tr>
             <th>ステータス</th>
-            <td><%= EventUser.statuses_i18n[@event_user.status] %></td>
+            <td><strong><%= EventUser.statuses_i18n[@event_user.status] %></strong>
+            <% if @event_user.status == "participated" %>
+            <td id="participated_<%=@event_user.id %>">
+            <%= render "participated_form", event_user:@event_user %>
+            </td>
+            <% end %>
           </tr>
           <tr>
             <th>人数</th>
@@ -99,7 +105,6 @@
           </tr>
         </table>
         <%= link_to "編集する",edit_event_user_path(@event_user), class: "btn btn-outline-success btn-block-xs" %>
-          <% end %>
           <% else %>
           <% end %>
         </table>
