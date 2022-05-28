@@ -9,9 +9,8 @@ class User::EventUsersController < ApplicationController
     @event_user.user_id = current_user.id
     # @event_user.event_id = @event_user.user_id.event_id
     # @event_user.event_id = Event.find(params[:id])
-    @user = current_user
     if @event_user.save
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user)
     else
       render :show
     end
@@ -25,7 +24,8 @@ class User::EventUsersController < ApplicationController
   end
 
   def index
-    @event_users = EventUser.all
+    @event_users = EventUser.where(user_id: current_user.id)
+    @user = current_user
   end
 
 
@@ -37,14 +37,19 @@ class User::EventUsersController < ApplicationController
     @event_user = EventUser.find(params[:id])
   end
 
+  # def update
+  #   @event_user = EventUser.find(params[:id])
+  #   @event_user.update(status: "participated")
+  #   # if @event_user.save
+  #   #   redirect_to event_user_path(@event_user.id)
+  #   # else
+  #   #   render :edit
+  #   # end
+  # end
+
   def update
     @event_user = EventUser.find(params[:id])
-    @event_user.update(status: "participated")
-    # if @event_user.save
-    #   redirect_to event_user_path(@event_user.id)
-    # else
-    #   render :edit
-    # end
+    @event_user.update(participated_params)
   end
 
   def cancel
@@ -60,12 +65,15 @@ class User::EventUsersController < ApplicationController
     end
   end
 
-  def memory
-    @user = current_user
-  end
-
   private
+
   def event_user_params
   params.require(:event_user).permit(:user_id, :event_id, :member_count, :application_comment, :cancel_comment, :applicated_title, :applipated_comment, :status)
+  end
+
+  def participated_params
+  params.require(:event_user).permit(:status)
+  #require使うモデルを宣言
+  #どのパラメータを許可するのかを設定
   end
 end

@@ -1,6 +1,7 @@
 <h2> </h2>
 <h2><strong>NEWイベント</strong></h2>
 <div class="new-event">
+  <% if user_signed_in? %>
   <%= form_with model: @event, url: events_path do |f| %>
   <table class="table">
     <tr>
@@ -34,6 +35,10 @@
   </table>
   <%= f.submit 'NEWイベント投稿' %>
   <% end %>
+  <% else %>
+  <h3>新規登録またはログイン後、投稿可能になります</h3>
+  <% end %>
+  
 </div>
 <style>
   h2 {

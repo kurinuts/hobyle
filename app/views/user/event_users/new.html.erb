@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <% if @user == current_user %>
+      <h4> </h4>
+      <h4>Hello! <%= @user.user_name %> さん</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="button1"><strong><%= link_to "趣味活スケジュール", user_path(current_user), :style=>"color: lightyellow;" %></strong></h4>
+          </div>
+          <div class="col-md-6">
+            <h4 class="button2"><strong><%= link_to "企画イベント歴", my_events_path, :style=>"color: lightyellow;" %></strong></h4>
+          </div>
+        </div>
+      </div>
+      <table class="table">
+        <tr>
+          <th>ステータス</th>
+          <th>タイトル</th>
+          <th>日程</th>
+          <th>主催者</th>
+          <th></th>
+        </tr>
+        <% @events.each do |event| %>
+        <tr>
+          <td>参加前参加済み</td>
+          <td><%= event.event.title %></td>
+          <td><%= event.event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
+          <td><%= event.event.user.user_name%></td>
+          <td><%= link_to "詳細", event_user_path(event_user.id), class: "btn btn-outline-primary btn-block-xs" %></td>
+        </tr>
+        <% end %>
+      </table>
+      <% end %>
+
+    </div>
+    <div class="col-md-5">
+      <table class="table", border=1 frame="box">
+        <tr>
+          <th>プロフィール画像</th>
+          <td>
+          
+          </td>
+        </tr>
+        <tr>
+          <th>ユーザー名</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>お住まい</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>自己紹介文</th>
+          <td></td>
+        </tr>
+      </table>
+      <div class="edit">
+        <% if @user == current_user %>
+        
+        <i class="fas fa-user-cog fa-lg"></i>
+        <% end %>
+      </div>
+    </div>
+
+
+
+<style>
+img {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  width: 100px;  /* 縦横を同じ値にする */
+  height: 100px;  /* 縦横を同じ値にする */
+  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+
+.table {
+  margin-top: 10px;
+}
+.button1 {
+  background-color: burlywood;
+  color: white;
+  text-align: center;
+  border-radius: 20%;
+}
+
+.button2 {
+  background-color: burlywood;
+  color: white;
+  text-align: center;
+  height: 50px;
+  padding-top: 10px;
+  border-radius: 20%;
+}
+
+.link {
+  color: white;
+}
+</style>

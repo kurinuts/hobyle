@@ -91,6 +91,10 @@
             <td id="participated_<%=@event_user.id %>">
             <%= render "participated_form", event_user:@event_user %>
             </td>
+            <% elsif @event_user.status == "memory" %>
+            <div class="memory">
+              <%= link_to new_memory_path do %>New Memory投稿‼<% end %>
+            </div>
             <% end %>
           </tr>
           <tr>
@@ -112,39 +116,44 @@
     </div>
   </div>
 
-  <style>
-    h2 {
-      background-color: tan;
-      color: floralwhite;
-      text-align: center;
-    }
+<style>
+h2 {
+  background-color: tan;
+  color: floralwhite;
+  text-align: center;
+}
 
-    .button {
-      color: lemonchiffon;
-      padding: 5px;
-      border: 0;
-      position: relative;
-    }
+.button {
+  color: lemonchiffon;
+  padding: 5px;
+  border: 0;
+  position: relative;
+}
 
-    .table {
-      margin-top: 10px;
+.table {
+  margin-top: 10px;
 
-    }
+}
 
-    h3 {
-      background-color: darkkhaki;
-      text-align: center;
-      color: lemonchiffon;
-      padding: 5px;
-      width: 100%;
-    }
+h3 {
+  background-color: darkkhaki;
+  text-align: center;
+  color: lemonchiffon;
+  padding: 5px;
+  width: 100%;
+}
 
-    h4  {
-      text-align: center;
-    }
+h4  {
+  text-align: center;
+}
 
-    img {
+img {
   border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
   object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
 }
+
+.memory {
+  margin-left: 0px;
+}
+
 </style>

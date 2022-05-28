@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4> </h4>
+      <h2><strong>みんなのmemories</strong></h2>
+      <%= link_to new_memory_path do %>New memories<% end %>
+      <div class="flex">
+      <% @memories.each do |memory| %>
+      <div class= "flex-contents">
+      
+      </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+h2 {
+      background-color: pink;
+      text-align: center;
+      padding: 5px;
+      width: 100%;
+    }
+
+</style>
