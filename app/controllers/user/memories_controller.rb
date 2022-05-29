@@ -24,8 +24,9 @@ class User::MemoriesController < ApplicationController
     @event_users = EventUser.where(user_id: current_user.id)
     @memory = Memory.new(memory_params)
     @memory.user_id = current_user.id
+    @memory.event_user_id = current_user.id
     @user = current_user
-    if @memory.save
+    if @memory.save()
       redirect_to memories_path
     else
       @events = Event.where(id: @event_users.pluck(:event_id))
@@ -45,8 +46,8 @@ class User::MemoriesController < ApplicationController
   end
 
   def index
-    @memories = EventUser.all
-    @event_users = EventUser.where(user_id: current_user.id)
+    @memories = Memory.all
+    # @event_users = EventUser.where(user_id: current_user.id)
   end
 
   def user_memory_index
@@ -64,7 +65,7 @@ class User::MemoriesController < ApplicationController
 
   private
 
-  def memory_params
-  params.require(:memory).permit(:user_id, :event_id, :event_user_id, :title, :comment, :image)
+  def memory_params()
+  params.require(:memory).permit(:user_id, :event_id, :event_user_id, :title, :comment, :image).merge(user_id: params[:user_id]).merge(event_user_id: params[:event_user_id])
   end
 end

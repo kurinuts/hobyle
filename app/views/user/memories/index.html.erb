@@ -3,25 +3,55 @@
     <div class="col-md-12">
       <h4> </h4>
       <h2><strong>みんなのmemories</strong></h2>
+      <% if user_signed_in? %>
       <%= link_to new_memory_path do %>New memories<% end %>
-      <div class="flex">
-      <% @memories.each do |memory| %>
-      <div class= "flex-contents">
-      
-      </div>
       <% end %>
-    </div>
+      <div class="flex">
+        <% @memories.each do |memory| %>
+        <div class="flex-box">
+          <h5><strong><%= memory.event.title %></strong></h5><br>
+          <% if memory.image.attached? %>
+          <%= image_tag memory.image, size: "190x150" %>
+          <% else %>
+          <%= image_tag 'no_image', size: "190x150" %>
+          <%= link_to memory_path(memory) do %><%= memory.title%><% end %>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
 
 <style>
+.flex {
+  display: flex;
+  background-color: #00c7ce;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex > div {
+  display: flex;
+  margin: 10px;
+  background-color: #fff;
+  width: 190px;
+  height: 225px;
+  justify-content:center; /* 水平方向 */
+}
+
 h2 {
-      background-color: pink;
-      text-align: center;
-      padding: 5px;
-      width: 100%;
-    }
+  background-color: pink;
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+}
+
+h5 {
+  background-color: tan;
+  text-align: center;
+  margin: 0px;
+}
 
 </style>

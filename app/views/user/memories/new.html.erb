@@ -16,7 +16,8 @@
         <tr>
           <th>参加イベント</th>
           <!--<td><%#= f.collection_select(:event_id, @events, :id, :title, prompt: "選択してください") %></td>-->
-          <td><%= select_tag "memory[event_id]", grouped_options_for_select(@events_select) %></td>
+          <td><%= select_tag "memory[event_id]", grouped_options_for_select(@events_select) %>
+          </td>
         </tr>
         <tr>
           <th>画像</th>

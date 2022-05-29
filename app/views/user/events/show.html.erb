@@ -97,8 +97,7 @@
           <tr>
             <th>予定人数</th><td><%= @event.limit_number %></td>
             <th>今の参加人数</th>
-            <td><%#= @event.event_user.memmber_count %>人</td>
-            <%#= sum_of_event_user.member_count%>
+            <td><%= @event.event_users.sum(:member_count) %>人</td>
           </tr>
         </table>
         <div class="check">

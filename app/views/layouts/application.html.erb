@@ -84,14 +84,25 @@
 
             <h4><strong>アウトドア</strong></h4>
             <% @events.each do |event| %>
-            <%= event.title%>
+            <% if event.genre_id == "アウトドア" %>
+            <%= event.title %>
+            <% end %>
             <% end %>
           </div>
           <div class="main-contents">
             <h4><strong>インドア</strong></h4>
+            <% @events.each do |event| %>
+            <% if event.genre == "インドア" %>
+            <%= event.title %>
+            <% end %>
+            <% end %>
           </div>
           <div class="main-contents">
             <h4><strong>スポーツ</strong></h4>
+            <% @events.each do |event| %>
+            <% if event.genre == "スポーツ" %>
+            <%= event.title %>
+            <% end %><% end %>
           </div>
         </div>
       </div>

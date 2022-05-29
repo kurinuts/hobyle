@@ -5,6 +5,12 @@ class User::EventUsersController < ApplicationController
   end
 
   def create
+    event = Event.find(params[:event_user][:event_id])
+    if event.limit_number < (event.event_users.sum(:member_count) + params[:event_user][:member_count].to_i)
+      # 
+      redirect_to event_path(event.id)
+      return
+    end
     @event_user = EventUser.new(event_user_params)
     @event_user.user_id = current_user.id
     # @event_user.event_id = @event_user.user_id.event_id
