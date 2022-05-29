@@ -25,6 +25,7 @@ Rails.application.routes.draw do
      get "subgenre" => "events#subgenre"
      get "users/my_events" => "users#my_events"
     resources:users
+    resources :memories
     resources :events do
       patch "active_change" => "events#active_change"
     end

@@ -29,6 +29,9 @@ class User::EventsController < ApplicationController
     @event = Event.find(params[:id])
     @user = @event.user
     @genre = @event.genre
+    @sum = 0
+    @event_users = @event.event_users
+    # @event.event_user.memmber_count += params[:event][:event_user][:member_count].to_i
     if @event.event_users.exists?(user_id: current_user.id)
       @event_user = @event.event_users.find_by(user_id: current_user.id)
       #参加していたらイベントユーザーに飛ぶ
@@ -55,10 +58,6 @@ class User::EventsController < ApplicationController
     else
       render :edit
     end
-  end
-  
-  def my_events
-    @events = Event.where(user_id: current_user.id)
   end
 
   def active_change

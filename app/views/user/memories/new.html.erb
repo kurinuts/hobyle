@@ -1,0 +1,48 @@
+<h2><strong>NEW Memories</strong></h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="image">
+    　  <% if @memory.image.attached? %>
+       <%= image_tag @memory.image, size: "400x300" %>
+       <% else %>
+       <%= image_tag 'no_image', size: "400x300" %>
+       <% end %>
+    </div>
+  </div>
+    <div class="col-md-6">
+      <%= form_with model: @memory, url: memories_path do |f| %>
+      <table class="table">
+        <tr>
+          <th>参加イベント</th>
+          <!--<td><%#= f.collection_select(:event_id, @events, :id, :title, prompt: "選択してください") %></td>-->
+          <td><%= select_tag "memory[event_id]", grouped_options_for_select(@events_select) %>
+          </td>
+        </tr>
+        <tr>
+          <th>画像</th>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <th>タイトル</th>
+          <td><%= f.text_field :title, placeholder: "感想タイトル" %></td>
+        </tr>
+        <tr>
+          <th>コメント</th>
+          <td><%= f.text_area :comment, placeholder: "感想コメント" %></td>
+        </tr>
+      </table>
+      <%= f.submit 'New Memory' %>
+      <% end %>
+    </div>
+
+<style>
+
+.image {
+  margin-top: 70px;
+}
+  h2 {
+    background-color: pink;
+    padding: 5px;
+  }
+</style>

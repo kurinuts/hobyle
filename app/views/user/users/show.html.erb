@@ -80,6 +80,7 @@
           <td><%= @user.user_introduction %></td>
         </tr>
       </table>
+      <h4><strong><%= link_to memories_path, class: "btn1 btn-warning" do %>memory一覧をみる<% end %></strong></h4>
       <div class="edit">
         <% if @user == current_user %>
         <%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
@@ -121,6 +122,21 @@ h2 {
   border-radius: 10%;
 }
 
+.btn1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+  padding: 1em 2em;
+  width: 100%;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: pink;
+  border-radius: 50vh;
+  transition: 0.3s;
+}
 
 
 .link {

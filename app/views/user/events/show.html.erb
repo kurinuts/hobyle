@@ -6,7 +6,7 @@
           <tr><h2><strong><%= @event.title %></strong></h2></tr>
           <tr>
             <th>主催者</th>
-            <td><%= @event.user.user_name%></td>
+            <td><%= link_to user_path(@event.user) do %><%= @event.user.user_name%><% end %></td>
           </tr>
           <tr>
             <th>ステータス</th>
@@ -96,8 +96,8 @@
         <table class="table">
           <tr>
             <th>予定人数</th><td><%= @event.limit_number %></td>
-            <th>今の参加人数</th><td>人
-            </td>
+            <th>今の参加人数</th>
+            <td><%= @event.event_users.sum(:member_count) %>人</td>
           </tr>
         </table>
         <div class="check">

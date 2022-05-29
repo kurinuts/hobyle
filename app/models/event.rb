@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :genre, optional: true
   has_many :event_users, dependent: :destroy
+  has_many :memories, dependent: :destroy
 
   validates :daytime, presence: true
   validates :is_active, inclusion: { in: [true, false] }
