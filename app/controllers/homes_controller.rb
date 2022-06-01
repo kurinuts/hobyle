@@ -1,11 +1,8 @@
 class HomesController < ApplicationController
 
   def top
-    @genres = Genre.all.order(created_at: :desc).limit(1)
-  end
-
-  def search
-    @results = @d.result
+    @genres = Genre.all
+    @q = Genre.ransack(params[:q])
   end
 
   def search_genre

@@ -5,22 +5,16 @@
       <table class="table">
         <tr>
           <th>ジャンルで検索</th>
-          <th>年代別で検索</th>
-          <th>地域別で検索</th>
         </tr>
         <tr>
           <td>
-      <!--      <= search_form_for @search, url: genres_search_path do |f| %>-->
-      <!--      <= f.label :name_eq, '商品検索' %>-->
-      <!--  <= f.collection_select :name_eq, @genres, :name,  include_blank: '選択してください' %>-->
-      <!--  <= f.submit '検索' %>-->
-      <!--< end %>-->
+            <%= search_form_for @q, url: search_events_path do |f| %>
+            <%= f.collection_select :name_eq, @genres, :name, :name, prompt: "選択してください" %>
+            <%= f.submit "検索" %>
+            <% end %>
           </td>
-          <td></td>
-          <td></td>
         </tr>
       </table>
-      検索
     </div>
   </div>
 </div>
@@ -103,6 +97,7 @@ img {
   text-align: center;
 
   }
+  
 
 
 </style>

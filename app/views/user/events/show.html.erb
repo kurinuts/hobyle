@@ -55,7 +55,7 @@
         <% end %>
       </div>
       <div class="col-md-6">
-          <% if @user == @event.user %>投稿ユーザーにしかステータスは出さないようにしたい
+          <% if @user == @event.user %>
         <table class="table", border=1 frame="box" style="font-size : 15px;">
           <tr><h1> </h1></tr>
           <tr><h2><strong>参加者コメント</strong></h2></tr>
@@ -116,6 +116,14 @@
         <table class="table">
           <tr><h3><strong>参加申請</strong></h3></tr>
           <%= form_with model: @event_user, url: event_users_path, method: :post do |f| %>
+          <% if @event_user.errors.any? %>
+          <%= @event_user.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @event_user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+          <% end %>
           <tr>
             <th>人数</th>
             <td><%= f.number_field :member_count %>
@@ -169,39 +177,48 @@
 
 </div>
 
-  <style>
-    h2 {
-      background-color: burlywood;
-      color: lightyellow;
-      text-align: center;
-    }
-
-    .button {
-      color: lemonchiffon;
-      padding: 5px;
-      border: 0;
-      position: relative;
-    }
-
-    .table {
-      margin-top: 10px;
-
-    }
-
-    h3 {
-      background-color: darkkhaki;
-      text-align: center;
-      color: lemonchiffon;
-      padding: 5px;
-      width: 100%;
-    }
-
-    h4  {
-      text-align: center;
-    }
-
-    img {
-  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
-  object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+<style>
+h2 {
+background-color: tan;
+color: lightyellow;
+text-align: center;
 }
+
+.button {
+color: lemonchiffon;
+padding: 5px;
+border: 0;
+position: relative;
+}
+
+.table {
+margin-top: 10px;
+
+}
+
+h3 {
+background-color: darkkhaki;
+text-align: center;
+color: lemonchiffon;
+padding: 5px;
+width: 100%;
+}
+
+h4  {
+text-align: center;
+}
+
+img {
+border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+
+th {
+background-color: #ede4cd;
+font-size: 15px;
+border:solid 1px antiquewhite;
+text-align: center;
+}
+
+
 </style>

@@ -60,6 +60,13 @@ class User::EventsController < ApplicationController
     end
   end
 
+  def search
+    @q = Genre.ransack(params[:q])
+    @genre = @q.result[0] #配列は０から始まる
+    @events = Event.where(genre_id: @genre.id).page(params[:page])
+    render :index #アクションを読まないでほしいからrender使用
+  end
+
   def active_change
     @event = Event.find(params[:event_id])
     # byebug

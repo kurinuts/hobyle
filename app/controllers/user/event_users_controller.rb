@@ -7,15 +7,14 @@ class User::EventUsersController < ApplicationController
   def create
     event = Event.find(params[:event_user][:event_id])
     if event.limit_number < (event.event_users.sum(:member_count) + params[:event_user][:member_count].to_i)
-      # 
       redirect_to event_path(event.id)
+      flash[:notice] = "人数制限に達しています"
       return
     end
     @event_user = EventUser.new(event_user_params)
     @event_user.user_id = current_user.id
-    # @event_user.event_id = @event_user.user_id.event_id
-    # @event_user.event_id = Event.find(params[:id])
     if @event_user.save
+      flash[:notice] = "申請が完了しました"
       redirect_to user_path(current_user)
     else
       render :show
