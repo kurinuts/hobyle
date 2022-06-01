@@ -55,6 +55,9 @@ class User::MemoriesController < ApplicationController
   end
 
   def show
+    @memory = Memory.find(params[:id])
+    @user = @memory.user
+    @user2 = @memory.event.user
   end
 
   def edit

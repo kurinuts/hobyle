@@ -4,18 +4,18 @@
       <h4> </h4>
       <h2><strong>みんなのmemories</strong></h2>
       <% if user_signed_in? %>
-      <%= link_to new_memory_path do %>New memories<% end %>
+      <%= link_to new_memory_path, class: 'btn2 btn-success' do %>New memories<% end %>
       <% end %>
       <div class="flex">
         <% @memories.each do |memory| %>
         <div class="flex-box">
-          <h5><strong><%= memory.event.title %></strong></h5><br>
+          <h5><strong><%= memory.event.title %></strong></h5>
           <% if memory.image.attached? %>
           <%= image_tag memory.image, size: "190x150" %>
           <% else %>
           <%= image_tag 'no_image', size: "190x150" %>
-          <%= link_to memory_path(memory) do %><%= memory.title%><% end %>
           <% end %>
+          <h7><%= link_to memory_path(memory) do %><strong><%= memory.title %></strong><% end %></h7>
         </div>
         <% end %>
       </div>
@@ -27,17 +27,16 @@
 <style>
 .flex {
   display: flex;
-  background-color: #00c7ce;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .flex > div {
-  display: flex;
   margin: 10px;
-  background-color: #fff;
+  background-color: beige;
   width: 190px;
   height: 225px;
+  text-align: center;
   justify-content:center; /* 水平方向 */
 }
 
@@ -52,6 +51,45 @@ h5 {
   background-color: tan;
   text-align: center;
   margin: 0px;
+}
+
+.btn2 {
+    background: #eee;
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    max-width: 280px;
+    padding: 10px 25px;
+    color: #313131;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+}
+
+.btn :after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  right: 2rem;
+  font-size: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.3s;
+  width: 6px;
+  height: 6px;
+  border-top: solid 2px currentColor;
+  border-right: solid 2px currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.btn2:hover {
+  background: #6bb6ff;
+  color: #FFF;
+}
+.btn2:hover:after {
+  right: 1.4rem;
 }
 
 </style>

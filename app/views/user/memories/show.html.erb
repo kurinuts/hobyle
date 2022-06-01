@@ -1,0 +1,73 @@
+<h2></h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <tr>
+          <h2><strong><%= @memory.title %></strong></h2>
+        </tr>
+        <tr>
+          <th>イベント名</th><td><%= @memory.event.title %></td>
+        </tr>
+        <tr>
+          <th>参加日時</th><td><%= @memory.event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
+        </tr>
+        <tr>
+          <% if user_signed_in? %>
+          <th>イベント企画者</th><td><%= link_to user_path(@user2) do %><%= @memory.event.user.user_name %><% end %></td>
+          <% else %>
+          <th>イベント企画者</th><td><%= @memory.event.user.user_name %></td>
+          <% end %>
+        </tr>
+      </table>
+
+    <div class="memory" style="padding: 10px; margin-top: 100px; margin-bottom: 10px; border: 1px dotted #333333;">
+      <h3><%= @memory.comment %></h3><br>
+      <% if user_signed_in? %>
+      <p>投稿者<%= link_to user_path(@user) do %>@<%= @memory.user.user_name %>さん<% end %></p>
+      <% else %>
+      <p>投稿者@<%= @memory.user.user_name %>さん</p>
+      <% end %>
+
+    </div>
+    </div>
+    <div class="col-md-6">
+      <div class="image2">
+      <% if @memory.image.attached? %>
+      <%= image_tag @memory.image, size: "500x400" %>
+      <% else %>
+      <%= image_tag 'no_image', size: "500x400" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+
+.memory {
+  border: 2px;
+}
+
+h2 {
+  background-color: pink;
+  text-align: center;
+}
+
+.memory > h3 {
+  margin-top: 20px;
+  background-color: #ffefef;
+  color: black;
+}
+
+.image2 {
+ margin-top: 50px;
+}
+th {
+background-color: #ede4cd;
+font-size: 15px;
+border:solid 1px antiquewhite;
+text-align: center;
+}
+
+</style>

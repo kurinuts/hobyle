@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     resources :memories
     resources :events do
       patch "active_change" => "events#active_change"
+      collection do #idを入れないという意味
+      get 'search', to: 'events#search'
+      end
     end
     resources :event_users
     get "event_users/cancel" => "event_users#destroy"
@@ -36,9 +39,8 @@ Rails.application.routes.draw do
     # get 'unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
     # patch 'withdraw/:id' => 'customers#withdraw', as: 'withdraw_customer'
     # put 'withdraw/:id' => 'customers#withdraw'
-  end
+    end
 
-  get 'genres/search'
   root to: 'homes#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
