@@ -46,7 +46,7 @@ class User::MemoriesController < ApplicationController
   end
 
   def index
-    @memories = Memory.all
+    @memories = Memory.page(params[:page]).per(10)
     # @event_users = EventUser.where(user_id: current_user.id)
   end
 

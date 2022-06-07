@@ -17,7 +17,7 @@
     <td><%= event.genre.name %></td>
     <td><%= event.is_active ? '募集中' : '募集終了' %></td>
     <% if user_signed_in? %>
-    <td><strong><%= link_to event_path(event) do %><%= event.title %><% end %></strong></td>
+    <td><strong><%= link_to event_path(event),class: "link" do %><%= event.title %><% end %></strong></td>
     <% else %>
     <td><strong><%= event.title %></strong></td>
     <% end %>
@@ -35,18 +35,20 @@
       <%= image_tag 'no_image', size: "30x30" %>
       <% end %><br>
       <% if user_signed_in? %>
-      <%= link_to user_path(event.user) do %><%= event.user.user_name %><% end %></td>
+      <%= link_to user_path(event.user),class: "link" do %></i><%= event.user.user_name %><% end %></td>
       <% else %>
       <%= event.user.user_name %>
       <% end %>
-
   </tr>
       <% end %>
 </table>
-<p>※ログインするとイベント詳細や企画ユーザーが閲覧できrるようになります</p>
-<div class="pagenate">
-  <%= paginate @events %>
-</div>
+  <% if user_signed_in? %>
+  <% else %>
+  <p>※ログインするとイベント詳細や企画ユーザーが閲覧できるようになります</p>
+  <% end %>
+  <div class="pagenate">
+    <%= paginate @events %>
+  </div>
 
 <style>
   img {
@@ -76,5 +78,9 @@ p {
   text-align: right;
 }
 
+.link {
+    text-decoration: none;
+    color: #494a41;
+}
 
 </style>
