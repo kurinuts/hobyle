@@ -75,34 +75,46 @@
         <div class="main-visual">
           <h3><strong>New Event</strong></h3>
           <div class="main-contents">
-            <!--< @event1.each do |event| %>-->
-            <!--  < if event.genre.image.attached? %>-->
-            <!--  <= image_tag event.genre.image %>-->
-            <!--  < else %>-->
-            <!--  < end %>-->
-            <!--< end %>-->
-
             <h4><strong>アウトドア</strong></h4>
-            <% @events.each do |event| %>
-            <% if event.genre_id == "アウトドア" %>
-            <%= event.title %>
+            <% @events_outdoor.each do |events_outdoor| %>
+            <% if user_signed_in? %>
+            <ol>
+              <li><strong><%= link_to event_path(events_outdoor),class: "link" do %><%= events_outdoor.title %><% end %></strong></li>
+            </ol>
+            <% else %>
+            <ol>
+              <li><strong><%= events_outdoor.title %></strong></li>
+            </ol>
             <% end %>
             <% end %>
           </div>
           <div class="main-contents">
             <h4><strong>インドア</strong></h4>
-            <% @events.each do |event| %>
-            <% if event.genre == "インドア" %>
-            <%= event.title %>
+            <% @events_indoor.each do |events_indoor| %>
+            <% if user_signed_in? %>
+            <ol>
+              <li><strong><%= link_to event_path(events_indoor),class: "link" do %><%= events_indoor.title %><% end %></strong></li>
+            </ol>
+            <% else %>
+            <ol>
+              <li><strong><%= events_indoor.title %></strong></li>
+            </ol>
             <% end %>
             <% end %>
           </div>
           <div class="main-contents">
             <h4><strong>スポーツ</strong></h4>
-            <% @events.each do |event| %>
-            <% if event.genre == "スポーツ" %>
-            <%= event.title %>
-            <% end %><% end %>
+            <% @events_sport.each do |events_sport| %>
+            <% if user_signed_in? %>
+            <ol>
+              <li><strong><%= link_to event_path(events_sport),class: "link" do %><%= events_sport.title %><% end %></strong></li>
+            </ol>
+            <% else %>
+            <ol>
+              <li><strong><%= events_sport.title %></strong></li>
+            </ol>
+            <% end %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -149,9 +161,30 @@
       color: lemonchiffon;
     }
 
-    .col-md-10 {
+  .col-md-10 {
       background-color: oldlace;
     }
 
+  ol {
+  padding: 0;
+  position: relative;
+  text-align: left;
+  }
+
+  ol li {
+  color: black;
+  border-left: solid 8px orange;/*左側の線*/
+  margin-bottom: 5px;/*下のバーとの余白*/
+  line-height: 1.5;
+  border-radius: 0 15px 15px 0;/*右側の角だけ丸く*/
+  padding: 0.5em;
+  list-style-type: none!important;
+
+  }
+
+   .link {
+    text-decoration: none;
+    color: #494a41;
+  }
   </style>
 </html>
