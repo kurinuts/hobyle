@@ -19,9 +19,11 @@ class User::EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     @event.is_active = true
-    # byebug
-    if @event.save!
-    redirect_to events_path
+    if @event.save
+      flash[:notice] = "イベントを投稿しました"
+      redirect_to events_path
+    else
+      render :new
     end
   end
 
@@ -32,9 +34,11 @@ class User::EventsController < ApplicationController
     @sum = 0
     @event_users = @event.event_users
     # @event.event_user.memmber_count += params[:event][:event_user][:member_count].to_i
-    if @event.event_users.exists?(user_id: current_user.id)
-      @event_user = @event.event_users.find_by(user_id: current_user.id)
+    if admin_signed_in?
+      @event_user = EventUser.new
       #参加していたらイベントユーザーに飛ぶ
+    elsif @event.event_users.exists?(user_id: current_user.id)
+      @event_user = @event.event_users.find_by(user_id: current_user.id)
     else
       #参加していなかったら、new（新規）に
     @event_user = EventUser.new

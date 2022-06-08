@@ -1,4 +1,13 @@
+<h2></h2>
 <h2><strong>NEW Memories</strong></h2>
+<% if @memory.errors.any? %>
+<%= @memory.errors.count %>件のエラーが発生しました
+<ul>
+  <% @memory.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -32,19 +41,21 @@
           <td><%= f.text_area :comment, placeholder: "感想コメント" %></td>
         </tr>
       </table>
-      <%= f.submit 'New Memory' %>
+      <%= f.submit '投稿！' %>
       <% end %>
     </div>
 
 <style>
 
-.image {
+  .image {
   margin-top: 70px;
 }
+  
   h2 {
-    background-color: pink;
-    padding: 5px;
-  }
+  background-color: tan;
+  color: lightyellow;
+  text-align: center;
+}
   
   th {
   background-color: #ede4cd;

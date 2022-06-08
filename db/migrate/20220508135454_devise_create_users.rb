@@ -19,9 +19,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.integer :phone_number
       t.string :address_free
       t.string :address
-      t.string :user_introduction
-      t.boolean :sex
-      t.integer :age
+      t.string :user_introduction, default: "初めまして！"
       
 
       ## Trackable

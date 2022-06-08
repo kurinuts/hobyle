@@ -27,7 +27,11 @@
           </td>
           <% @secondgenres.each do |secondgenre| %>
             <% if secondgenre.genre_id == genre.id %>
-          <td><%= secondgenre.name %></td>
+          <td>
+            <ul class="list">
+              <li><%= secondgenre.name %></li>
+            </ul>
+          </td>
             <% end %>
           <% end %>
           <td>
@@ -52,4 +56,9 @@ img {
   text-align: center;
 
   }
+  
+  .list > li {
+  display: block; 
+  list-style:none;
+}
 </style>

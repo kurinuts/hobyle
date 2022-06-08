@@ -10,9 +10,15 @@ class User::UsersController < ApplicationController
 #   end
 
   def show
-    @user = User.find(params[:id])
-    @event_users = EventUser.where(user_id: current_user.id)
-    @events = Event.where(user_id: @user.id)
+    if admin_signed_in?
+      @event_users = EventUser.new
+      @user = User.find(params[:id])
+      @events = Event.where(user_id: @user.id)
+    else
+      @user = User.find(params[:id])
+      @event_users = EventUser.where(user_id: current_user.id)
+      @events = Event.where(user_id: @user.id)
+    end
   end
 
   # def history

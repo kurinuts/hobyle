@@ -25,7 +25,10 @@
         <% @event_users.each do |event_user| %>
         <tr>
           <td><strong><%= EventUser.statuses_i18n[event_user.status] %></strong></td>
-          <td><%= link_to event_user_path(event_user.id) do %><%= event_user.event.title %><% end %></td>
+          <td><%= link_to event_user_path(event_user.id),class: "link" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-arrow-right-square" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/></svg>
+          <%= event_user.event.title %><% end %></td>
           <td><%= event_user.event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
           <td><%= event_user.event.user.user_name%></td>
         </tr>
@@ -33,7 +36,7 @@
       </table>
       <% else %>
       <h4> </h4>
-      <h2><strong><%= @user.user_name %></strong>さんの企画イベント履歴</h2>
+      <h2><strong><%= @user.user_name %>さんの企画イベント履歴</strong></h2>
 
       <table class="table">
         <tr>
@@ -46,7 +49,10 @@
         <% @events.each do |event| %>
         <tr>
           <td><strong><%= event.is_active ? '募集中' : '募集終了' %></strong></td>
-          <td><%= link_to event_path(event) do %><%= event.title %><% end %></td>
+          <td><%= link_to event_path(event),class: "link" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-arrow-right-square" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/></svg>
+          <%= event.title %><% end %></td>
           <td><%= event.daytime.strftime('%Y年%m月%d日 %H:%M') %></td>
           <td><%= event.place %></td>
         </tr>
@@ -86,7 +92,6 @@
         <i class="fas fa-user-cog fa-lg"></i>
         <% end %>
       </div>
-        <h4><strong><%= link_to memories_path, class: "btn1 btn-warning" do %>memory一覧をみる<% end %></strong></h4>
         <% end %>
     </div>
 
@@ -146,8 +151,8 @@ border:solid 1px antiquewhite;
 text-align: center;
 }
 
-
 .link {
-  color: white;
+  text-decoration: none;
+  color: #494a41;
 }
 </style>
