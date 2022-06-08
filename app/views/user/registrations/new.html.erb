@@ -1,4 +1,5 @@
-<h2>新規登録</h2>
+<h2></h2>
+<h2><strong>新規登録</strong></h2>
 <%= form_with model: @user, url: user_registration_path do |f| %>
 <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -37,7 +38,7 @@
         </td>
         <th>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(最低<%= @minimum_password_length %> 文字以上)</em>
           <% end %>
         </th>
         <td></td>
@@ -48,7 +49,7 @@
         </td>
         <th>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(最低<%= @minimum_password_length %> 文字以上)</em>
           <% end %>
         </th>
         <td></td>
@@ -80,5 +81,11 @@
   .table {
     width: 100%%;
     text-align: center;
+  }
+
+  h2 {
+  background-color: tan;
+  color: lightyellow;
+  text-align: center;
   }
 </style>

@@ -1,3 +1,4 @@
+<h2></h2>
 <h2>管理者ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -24,3 +25,19 @@
 <% end %>
 
 <%= render "admin/shared/links" %>
+
+<style>
+  h2 {
+  background-color: tan;
+  color: lightyellow;
+  text-align: center;
+}
+
+.field {
+  text-align: center;
+}
+
+.actions {
+  text-align: center;
+}
+</style>

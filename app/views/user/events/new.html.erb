@@ -1,5 +1,12 @@
 <h2> </h2>
 <h2><strong>NEWイベント</strong></h2>
+<% if @event.errors.any? %>
+<%= @event.errors.count %>件のエラーが発生しました
+<ul>
+  <% @event.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  <% end %>
 <div class="new-event">
   <% if user_signed_in? %>
   <%= form_with model: @event, url: events_path do |f| %>
@@ -26,7 +33,7 @@
     <tr>
       <th>持ち物</th><td><%= f.text_area :preparation %></td>
       <th>予定人数</th><td><%= f.number_field :limit_number, min: "0" %> 人</td>
-    </tr>%></td>
+    </tr></td>
     </tr>
     <tr>
       <th>備考</th><td><%= f.text_area :remarks %></td>

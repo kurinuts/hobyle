@@ -1,6 +1,14 @@
 <h4></h4><h2><strong>ユーザー編集画面</strong></h2>
 <div class="edit-user">
   <%= form_with model: @user, url: user_path(@user) do |f| %>
+  <% if @user.errors.any? %>
+  <%= @user.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
   <table class="table">
     <tr>
       <th>プロフィール画像</th>
@@ -9,15 +17,7 @@
       <th>ユーザー名</th>
       <td><%= f.text_field :user_name %></td>
     </tr>
-    <tr>
-      <th>年代</th>
-      <td><%= f.select :age, ([["20代", 1], ["30代", 2], ["40代", 3], ["50代", 4], ["60代", 5], ["70代", 6], ["80代", 7]]), prompt: "選択してください" %></td>
-    </tr>
-    <tr>
-      <th>性別</th>
-      <td></td>
-    </tr>
-
+    
     <tr>
       <th>お住まい</th>
       <td><%= f.text_field :address_free %>都道府県 <%= f.text_field :address %>市町村</td>

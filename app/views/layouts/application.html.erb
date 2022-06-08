@@ -50,6 +50,9 @@
             <li class="nav-item">
               <%= link_to '会員一覧', admin_users_path, class: 'nav-link text-white' %>
             </li>
+            <li class="nav-item">
+              <%= link_to 'Memories', memories_path, class: 'nav-link text-white' %>
+            </li>
             <% else %>
             <li class="nav-item">
               <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-white' %>
@@ -81,6 +84,10 @@
             <ol>
               <li><strong><%= link_to event_path(events_outdoor),class: "link" do %><%= events_outdoor.title %><% end %></strong></li>
             </ol>
+            <% elsif admin_signed_in? %>
+            <ol>
+              <li><strong><%= link_to event_path(events_outdoor),class: "link" do %><%= events_outdoor.title %><% end %></strong></li>
+            </ol>
             <% else %>
             <ol>
               <li><strong><%= events_outdoor.title %></strong></li>
@@ -95,6 +102,10 @@
             <ol>
               <li><strong><%= link_to event_path(events_indoor),class: "link" do %><%= events_indoor.title %><% end %></strong></li>
             </ol>
+            <% elsif admin_signed_in? %>
+            <ol>
+              <li><strong><%= link_to event_path(events_indoor),class: "link" do %><%= events_indoor.title %><% end %></strong></li>
+            </ol>
             <% else %>
             <ol>
               <li><strong><%= events_indoor.title %></strong></li>
@@ -106,6 +117,10 @@
             <h4><strong>スポーツ</strong></h4>
             <% @events_sport.each do |events_sport| %>
             <% if user_signed_in? %>
+            <ol>
+              <li><strong><%= link_to event_path(events_sport),class: "link" do %><%= events_sport.title %><% end %></strong></li>
+            </ol>
+            <% elsif admin_signed_in? %>
             <ol>
               <li><strong><%= link_to event_path(events_sport),class: "link" do %><%= events_sport.title %><% end %></strong></li>
             </ol>
@@ -172,7 +187,6 @@
   }
 
   ol li {
-  color: black;
   border-left: solid 8px orange;/*左側の線*/
   margin-bottom: 5px;/*下のバーとの余白*/
   line-height: 1.5;

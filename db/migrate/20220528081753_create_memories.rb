@@ -4,8 +4,8 @@ class CreateMemories < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.integer :event_id
       t.integer :event_user_id
-      t.string :title
-      t.text :comment
+      t.string :title, null: false
+      t.text :comment, null: false
       t.timestamps
     end
   end

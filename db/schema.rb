@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(version: 2022_05_28_081753) do
     t.integer "user_id"
     t.integer "event_id"
     t.integer "event_user_id"
-    t.string "title"
-    t.text "comment"
+    t.string "title", null: false
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -133,9 +133,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_081753) do
     t.integer "phone_number"
     t.string "address_free"
     t.string "address"
-    t.string "user_introduction"
-    t.boolean "sex"
-    t.integer "age"
+    t.string "user_introduction", default: "初めまして！"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

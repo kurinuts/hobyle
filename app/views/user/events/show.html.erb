@@ -113,9 +113,9 @@
         </div>
         <% elsif user_signed_in? %>
         <% unless @event.event_users.exists?(user_id: current_user.id) %>
+        <%= form_with model: @event_user, url: event_users_path, method: :post do |f| %>
         <table class="table">
           <tr><h3><strong>参加申請</strong></h3></tr>
-          <%= form_with model: @event_user, url: event_users_path, method: :post do |f| %>
           <% if @event_user.errors.any? %>
           <%= @event_user.errors.count %>件のエラーが発生しました
           <ul>
