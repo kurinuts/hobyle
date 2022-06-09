@@ -10,7 +10,7 @@
           <td>
             <%= search_form_for @q, url: search_events_path do |f| %>
             <%= f.collection_select :name_eq, @genres, :name, :name, prompt: "選択してください" %>
-            <%= f.submit "検索" %>
+            <input class="radius-percent-20" type="submit" value="検索">
             <% end %>
           </td>
         </tr>
@@ -72,6 +72,21 @@
     font-family: sans-serif;
   }
 
+  .radius-percent-20 {
+  background-color: darkkhaki;
+  color: lemonchiffon;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+}
+
+ .radius-percent-20:active {
+   transform: translateY(2px);
+ }
+
+
   .list-1 {
     border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
     object-fit: cover;
@@ -97,7 +112,7 @@ img {
   text-align: center;
 
   }
-  
+
 
 
 </style>

@@ -66,13 +66,9 @@
             <td><%= @event_user.user.user_introduction %></td>
           </tr>
         </table>
+        <%= form_with model: @event_user, url: event_user_path(@event_user), method: :patch do |f| %>
         <table class="table">
           <tr><h3><strong><%= current_user.user_name %> さんの<br>参加申請内容</strong></h3>
-          <%= form_with model: @event_user, url: event_user_path(@event_user), method: :patch do |f| %>
-          </tr>
-          <tr>
-            <th>ステータス</th>
-            <td></td>
           </tr>
           <tr>
             <th>人数</th>
@@ -85,47 +81,76 @@
             </td>
           </tr>
         </table>
-        <%= f.submit '更新する', class: "btn btn-outline-success" %><% end %>
-        <%= link_to "申請キャンセル", event_user_path(@event_user), method: :delete, class: "btn btn-outline-danger btn-block-xs" %>
-        本当は「削除ページ」に遷移して「キャンセル理由」を追記してからdestroyしたい
+        <input class="radius-percent" type="submit" value="更新する">
+        <%= link_to "申請キャンセル", event_user_path(@event_user), method: :delete, class: "btn btn-danger btn-block-xs" %>
         </table>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <style>
-    h2 {
-      background-color: darkseagreen;
-      color: white;
-      text-align: center;
-    }
+<style>
+h2 {
+  background-color: tan;
+  color: floralwhite;
+  text-align: center;
+}
 
-    .button {
-      color: lemonchiffon;
-      padding: 5px;
-      border: 0;
-      position: relative;
-    }
+.button {
+  color: lemonchiffon;
+  padding: 5px;
+  border: 0;
+  position: relative;
+}
 
-    .table {
-      margin-top: 10px;
+.table {
+  margin-top: 10px;
 
-    }
+}
 
-    h3 {
-      background-color: darkkhaki;
-      text-align: center;
-      color: lemonchiffon;
-      padding: 5px;
-      width: 100%;
-    }
+h3 {
+  background-color: darkkhaki;
+  text-align: center;
+  color: lemonchiffon;
+  padding: 5px;
+  width: 100%;
+}
 
-    h4  {
-      text-align: center;
-    }
+h4  {
+  text-align: center;
+}
 
-    img {
+img {
   border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
   object-fit: cover; /* 縦横比固定したまま上2つの縦横の範囲内に収まるように配置する */
+}
+
+.radius-percent {
+  background-color: darkkhaki;
+  color: lemonchiffon;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+}
+
+.radius-percent:active {
+  transform: translateY(2px);
+}
+
+.btn {
+  background-color: red;
+  color: white;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+  line-height: 15px;
+}
+
+.btn:active {
+  transform: translateY(2px);
 }
 </style>

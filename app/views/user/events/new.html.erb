@@ -40,7 +40,7 @@
       <th>＊質問回答</th><td><%= f.text_area :second_remarks, placeholder: "投稿後、質問があった場合はこちらに回答を記入ください" %></td>
     </tr>
   </table>
-  <%= f.submit 'NEWイベント投稿' %>
+  <input class="radius-percent" type="submit" value="NEWイベント投稿">
   <% end %>
   <% else %>
   <h3>新規登録またはログイン後、投稿可能になります</h3>
@@ -60,6 +60,21 @@ font-size: 15px;
 border:solid 1px antiquewhite;
 text-align: center;
 }
+
+.radius-percent {
+  background-color: darkkhaki;
+  color: lemonchiffon;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+}
+
+
+ .radius-percent:active {
+   transform: translateY(2px);
+ }
 </style>
 
 

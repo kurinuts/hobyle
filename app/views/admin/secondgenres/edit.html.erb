@@ -9,27 +9,32 @@
        <%= image_tag 'no_image', size: "400x300" %>
        <% end %>
     　</div>
-    　   <div class="link">
+    　   <div class="lin1k">
         <%= link_to "ジャンル一覧画面へ", admin_genres_path, class: "btn btn-outline-warning btn-block" %>
         <%= link_to "ジャンル詳細画面へ", admin_genre_path(@genre), class: "btn btn-outline-primary btn-block" %>
         </div>
     </div>
     <div class="col-md-6">
       <div class="edit">
-        <%= form_with model: @secondgenre, url: admin_secondgenres_path, method: :patch do |f| %>
+        <%= form_with model: @secondgenre, url: admin_secondgenre_path(@secondgenre), method: :patch do |f| %>
       <td>
         <%= f.text_field :name %>
         <%= f.submit '変更を更新する' %>
         <% end %>
       </div>
+  
   <style>
 
-  .link {
+  .link1 {
     width: 76.5%;
     margin-left: 20px;
   }
 
   .edit {
     margin-top: 30px;
+  }
+  
+  .image {
+    text-align: center;
   }
   </style>

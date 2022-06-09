@@ -54,7 +54,11 @@ class User::EventUsersController < ApplicationController
 
   def update
     @event_user = EventUser.find(params[:id])
-    @event_user.update(participated_params)
+    if @event_user.update(participated_params)
+      redirect_to event_user_path(@event_user)
+    else
+      render :edit
+    end
   end
 
   def cancel

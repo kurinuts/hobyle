@@ -13,10 +13,12 @@
  *= require_tree .
  *= require_self
  */
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
 
 * {
-  font-family: sans-serif;
+  font-family: "Comic Sans MS","Comic Sans MS", "M PLUS Rounded 1c";
 }
+
 body {
   padding-top: 84.8px;
   padding-bottom: 103px;
@@ -26,6 +28,9 @@ body {
   background-color: #808000;
 }
 
+.col-md-2 {
+  background-color: #D2B48C;
+}
 
 .main-visual {
   width: 100%; /* 横幅350px */
@@ -37,6 +42,7 @@ body {
 footer {
   width: 100%;
   background-color: #808000;
+  padding: 0;
 }
 
 .col-md-10 {
