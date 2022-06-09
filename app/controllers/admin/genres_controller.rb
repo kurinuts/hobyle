@@ -44,8 +44,8 @@ class Admin::GenresController < ApplicationController
   def destroy
   @genre = Genre.find(params[:id])
   if @genre.destroy
-  flash[:notice] = "successfully cart_item_delete"
-  redirect_to admin_genres_path
+  flash[:notice] = "ジャンルの削除に成功しました"
+  redirect_to admin_genre_path(genre_params)
   else
   render :index
   end

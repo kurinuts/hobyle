@@ -25,15 +25,13 @@
               <%= image_tag 'no_image', size: "100x90" %>
               <% end %>
           </td>
-          <% @secondgenres.each do |secondgenre| %>
-            <% if secondgenre.genre_id == genre.id %>
           <td>
-            <ul class="list">
-              <li><%= secondgenre.name %></li>
-            </ul>
-          </td>
+            <% @secondgenres.each do |secondgenre| %>
+            <% if secondgenre.genre_id == genre.id %>
+            <%= secondgenre.name %><br>
             <% end %>
           <% end %>
+          </td>
           <td>
             <%= link_to "詳細", admin_genre_path(genre.id), class: "btn btn-outline-primary btn-block-xs" %><br>
             <%= link_to "編集", edit_admin_genre_path(genre.id), class: "btn btn-outline-success btn-block-xs" %><br>
@@ -56,9 +54,9 @@ img {
   text-align: center;
 
   }
-  
+
   .list > li {
-  display: block; 
+  display: block;
   list-style:none;
 }
 </style>

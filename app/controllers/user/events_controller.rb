@@ -47,7 +47,7 @@ class User::EventsController < ApplicationController
   end
 
   def index
-    @events = Event.page(params[:page])
+    @events = Event.order(created_at: :desc).page(params[:page])
   end
 
   def edit

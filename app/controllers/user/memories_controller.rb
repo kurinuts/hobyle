@@ -6,13 +6,13 @@ class User::MemoriesController < ApplicationController
     # pp @event_users.pluck(:event_id)
     @events = Event.where(id: @event_users.pluck(:event_id))
 
-    @events_select = {'参加済みイベント'=>{},'企画したイベント'=>{}}
+    @events_select = {'参加イベント'=>{},'企画したイベント'=>{}}
     #{ハッシュ型：キー名変えられる(項目名が存在するものとかに利用)
     #[]配列型：キー名は変えられない・・値（id）だけ選択
     events = Event.where(id: @event_users.pluck(:event_id))
     myEvents = current_user.events
     events.each do |e|
-      @events_select['参加済みイベント'][e.title] = e.id
+      @events_select['参加イベント'][e.title] = e.id
     end
     myEvents.each do |e|
       @events_select['企画したイベント'][e.title] = e.id
@@ -46,7 +46,7 @@ class User::MemoriesController < ApplicationController
   end
 
   def index
-    @memories = Memory.page(params[:page]).per(10)
+    @memories = Memory.order(created_at: :desc).page(params[:page]).per(10)
     # @event_users = EventUser.where(user_id: current_user.id)
   end
 
@@ -58,12 +58,6 @@ class User::MemoriesController < ApplicationController
     @memory = Memory.find(params[:id])
     @user = @memory.user
     @user2 = @memory.event.user
-  end
-
-  def edit
-  end
-
-  def destroy
   end
 
   private

@@ -52,6 +52,7 @@
         </table>
         <% if @user == current_user %>
         <%= link_to "イベント内容を変更する", edit_event_path(@event), class: "btn btn-outline-success btn-block" %>
+        <h2></h2>
         <% end %>
       </div>
       <div class="col-md-6">
@@ -106,9 +107,7 @@
           <%= f.label :is_active, "募集中" %>
           <%= f.radio_button :is_active, "false", checked: @event.is_active.blank? ? true : false %>
           <%= f.label :is_active, "募集終了" %><br>
-          <%#= f.hidden_field :daytime, :value => @event.daytime %>
-          <%= f.submit "更新する", class: "btn btn-info" %>
-          <%#= link_to event_user_path(event_user.id) do %><%#= "詳細" %><%# end %>
+          <input class="radius-percent" type="submit" value="更新する">
           <% end %>
         </div>
         <% elsif user_signed_in? %>
@@ -140,7 +139,7 @@
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :event_id, :value => @event.id %>
         <%= f.hidden_field :genre_id, :value => @genre.id %>
-        <%= f.submit "参加する"%>
+        <input class="radius-percent" type="submit" value="参加する">
           <% end %>
           <% else %>
           <h4>参加申請済みです</h4>
@@ -220,5 +219,18 @@ border:solid 1px antiquewhite;
 text-align: center;
 }
 
+.radius-percent {
+  background-color: darkkhaki;
+  color: lemonchiffon;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+}
+
+ .radius-percent:active {
+   transform: translateY(2px);
+ }
 
 </style>
