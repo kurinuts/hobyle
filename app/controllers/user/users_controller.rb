@@ -46,6 +46,18 @@ class User::UsersController < ApplicationController
     render :edit
     end
   end
+  
+  def unsubscribe
+  @user = current_user
+  end
+
+  def destroy
+    @user = User.find(params[:id]) 
+    @user = current_user
+    @user.destroy
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to :root #削除に成功すればrootページに戻る
+  end
 
   private
   def user_params

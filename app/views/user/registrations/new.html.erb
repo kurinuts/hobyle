@@ -1,5 +1,6 @@
 <h2></h2>
 <h2><strong>新規登録</strong></h2>
+
 <%= form_with model: @user, url: user_registration_path do |f| %>
 <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -73,7 +74,7 @@
     </table>
 
   <div class="actions">
-    <%= f.submit "新規登録" %>
+    <input class="radius-percent" type="submit" value="新規登録">
   </div>
 <% end %>
 
@@ -88,4 +89,18 @@
   color: lightyellow;
   text-align: center;
   }
+
+  .radius-percent {
+  background-color: darkkhaki;
+  color: lemonchiffon;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+}
+
+ .radius-percent:active {
+   transform: translateY(2px);
+ }
 </style>

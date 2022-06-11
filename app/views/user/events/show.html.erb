@@ -96,7 +96,7 @@
         <% if @user == current_user %>
         <table class="table">
           <tr>
-            <th>予定人数</th><td><%= @event.limit_number %></td>
+            <th>予定人数</th><td><%= @event.limit_number %>人</td>
             <th>今の参加人数</th>
             <td><%= @event.event_users.sum(:member_count) %>人</td>
           </tr>

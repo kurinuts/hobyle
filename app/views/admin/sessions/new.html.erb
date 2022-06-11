@@ -20,7 +20,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <input class="radius-percent" type="submit" value="ログイン">
   </div>
 <% end %>
 
@@ -32,6 +32,21 @@
   color: lightyellow;
   text-align: center;
 }
+
+ .radius-percent {
+  background-color: darkkhaki;
+  color: lemonchiffon;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+}
+
+ .radius-percent:active {
+   transform: translateY(2px);
+ }
+ 
 
 .field {
   text-align: center;

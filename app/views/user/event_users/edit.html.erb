@@ -82,7 +82,7 @@
           </tr>
         </table>
         <input class="radius-percent" type="submit" value="更新する">
-        <%= link_to "申請キャンセル", event_user_path(@event_user), method: :delete, class: "btn btn-danger btn-block-xs" %>
+        <%= link_to "申請キャンセル", event_user_path(@event_user), method: :delete, class: "btn3 btn-danger btn-block-xs" %>
         </table>
         <% end %>
       </div>
@@ -139,7 +139,8 @@ img {
   transform: translateY(2px);
 }
 
-.btn {
+.btn3 {
+  padding: 1px 5px;
   background-color: red;
   color: white;
   border: none;

@@ -1,0 +1,18 @@
+<div class ="delete">
+  <h2>本当に退会しますか？</h2>
+  <div>
+    <p>退会すると、会員登録情報や、<br>
+    これまでの購入履歴が閲覧できなくなります。<br>
+    退会する場合は、「退会する」をクリックしてください。</p>
+  </div>
+  <div>
+    <%= link_to '退会しない', user_path(@user) %>
+    <%= link_to "退会する", user_path(@user), method: :delete %>
+  </div>
+</div>
+
+<style>
+  .delete {
+    text-align: center;
+  }
+</style>

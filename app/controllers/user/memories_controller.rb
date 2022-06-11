@@ -2,17 +2,18 @@ class User::MemoriesController < ApplicationController
 
   def new
     @memory = Memory.new
-    @event_users = EventUser.where(user_id: current_user.id)
+    event_users = EventUser.where(user_id: current_user.id)
+                            .where(status: 2)
     # pp @event_users.pluck(:event_id)
-    @events = Event.where(id: @event_users.pluck(:event_id))
+    @events = Event.where(id: event_users.pluck(:event_id))
 
-    @events_select = {'参加イベント'=>{},'企画したイベント'=>{}}
+    @events_select = {'参加済みイベント'=>{},'企画したイベント'=>{}}
     #{ハッシュ型：キー名変えられる(項目名が存在するものとかに利用)
     #[]配列型：キー名は変えられない・・値（id）だけ選択
-    events = Event.where(id: @event_users.pluck(:event_id))
+    events = Event.where(id: event_users.pluck(:event_id))
     myEvents = current_user.events
     events.each do |e|
-      @events_select['参加イベント'][e.title] = e.id
+      @events_select['参加済みイベント'][e.title] = e.id
     end
     myEvents.each do |e|
       @events_select['企画したイベント'][e.title] = e.id
@@ -21,19 +22,21 @@ class User::MemoriesController < ApplicationController
   end
 
   def create
-    @event_users = EventUser.where(user_id: current_user.id)
+    event_users = EventUser.where(user_id: current_user.id)
+                            .where(status: 2)
     @memory = Memory.new(memory_params)
     @memory.user_id = current_user.id
     @memory.event_user_id = current_user.id
     @user = current_user
-    if @memory.save()
+    # binding.irb
+    if @memory.save
       redirect_to memories_path
     else
-      @events = Event.where(id: @event_users.pluck(:event_id))
+      @events = Event.where(id: event_users.pluck(:event_id))
       @events_select = {'参加済みイベント'=>{},'企画したイベント'=>{}}
       #{ハッシュ型：キー名変えられる(項目名が存在するものとかに利用)
       #[]配列型：キー名は変えられない・・値（id）だけ選択
-      events = Event.where(id: @event_users.pluck(:event_id))
+      events = Event.where(id: event_users.pluck(:event_id))
       myEvents = current_user.events
       events.each do |e|
         @events_select['参加済みイベント'][e.title] = e.id
