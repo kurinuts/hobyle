@@ -49,7 +49,7 @@
   </tr>
 </table>
 <input class="radius-percent" type="submit" value="変更を更新する"><% end %>
-<%= link_to "削除", event_path(@event), method: :delete, class: "btn btn-danger btn-block-xs" %>
+<%= link_to "削除", event_path(@event), method: :delete, class: "btn3 btn-danger btn-block-xs" %>
 <style>
   p {
     color: red;
@@ -57,7 +57,7 @@
   .check {
     text-align:;
   }
-  
+
   .radius-percent {
   background-color: darkkhaki;
   color: lemonchiffon;
@@ -66,13 +66,14 @@
   border-radius: 3px;
   box-shadow: 0px 3px 5px lightgray;
   transition: 0.2s;
+  margin-bottom: 5px;
 }
 
  .radius-percent:active {
    transform: translateY(2px);
  }
- 
- .btn {
+
+ .btn3 {
   background-color: red;
   color: white;
   border: none;
@@ -81,9 +82,10 @@
   box-shadow: 0px 3px 5px lightgray;
   transition: 0.2s;
   line-height: 15px;
+  padding: 2px 5px ;
  }
- 
- .btn:active {
+
+ .btn3:active {
    transform: translateY(2px);
  }
 </style>

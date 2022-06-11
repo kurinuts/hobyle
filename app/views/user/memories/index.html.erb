@@ -4,20 +4,20 @@
   <div class="row">
     <div class="col-md-12">
       <h4> </h4>
-      <h2><strong>みんなのmemories</strong></h2>
+      <h2><strong>みんなのMemories</strong></h2>
       <% if user_signed_in? %>
-      <%= link_to new_memory_path, class: 'btn2 btn-success' do %>New memories<% end %>
+      <%= link_to new_memory_path, class: 'btn2 btn-success' do %>New Memories<% end %>
       <% end %>
       <div class="flex">
         <% @memories.each do |memory| %>
-        <div class="flex-box">
-          <h5><strong><%= memory.event.title %></strong></h5>
+        <div class="">
+          <h5 class="p-1"><strong><%= memory.event.title %></strong></h5>
           <% if memory.image.attached? %>
           <%= link_to memory_path(memory) do %><%= image_tag memory.image, size: "190x150" %><% end %>
           <% else %>
           <%= image_tag 'no_image', size: "190x150" %>
           <% end %>
-          <div class="link">
+          <div class="link py-1">
             <h7><%= link_to memory_path(memory),class: "link" do %>
               <strong>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-arrow-right-square" viewBox="0 0 16 16">
@@ -25,9 +25,9 @@
                 <%= memory.title %>
               </strong>
               <% end %>
-            </h7>  
+            </h7>
           </div>
-          
+
         </div>
         <% end %>
       </div>
@@ -50,7 +50,7 @@
   margin: 10px;
   background-color: #fff1cf;
   width: 190px;
-  height: 220px;
+  height: auto;
   text-align: center;
   justify-content:center; /* 水平方向 */
 }

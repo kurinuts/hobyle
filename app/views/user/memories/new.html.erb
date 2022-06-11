@@ -1,5 +1,5 @@
 <h2></h2>
-<h2><strong>NEW Memories</strong></h2>
+<h2><strong>New Memories</strong></h2>
 <% if @memory.errors.any? %>
 <%= @memory.errors.count %>件のエラーが発生しました
 <ul>
@@ -26,6 +26,7 @@
           <th>参加イベント</th>
           <!--<td><%#= f.collection_select(:event_id, @events, :id, :title, prompt: "選択してください") %></td>-->
           <td><%= select_tag "memory[event_id]", grouped_options_for_select(@events_select) %>
+          <%#= hidden_field_tag :event_user_id, @event_select.event_user_id %>
           </td>
         </tr>
         <tr>
@@ -50,20 +51,20 @@
   .image {
   margin-top: 70px;
 }
-  
+
   h2 {
   background-color: tan;
   color: lightyellow;
   text-align: center;
 }
-  
+
   th {
   background-color: #ede4cd;
   font-size: 15px;
   border:solid 1px antiquewhite;
   text-align: center;
   }
-  
+
   .radius-percent {
   background-color: tan;
   color: lemonchiffon;
