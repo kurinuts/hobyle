@@ -6,7 +6,7 @@
         <% if @genre.image.attached? %>
         <%= image_tag @genre.image, size: "400x300" %>
         <% else %>
-        <%= image_tag 'no_image', size: "400x300" %>
+        <%= image_tag asset_path('noimage.jpg'), size: "400x300" %>
         <% end %>
       </div>
       <div class="link">

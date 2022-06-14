@@ -17,7 +17,7 @@
       <% if user.image.attached? %>
       <%= image_tag user.image, size: "25x25" %>
       <% else %>
-      <%= image_tag 'no_image', size: "25x25" %>
+      <%= image_tag asset_path('noimage.jpg'), size: "25x25" %>
       <% end %>
     </td>
     <td><%= link_to user_path(user) do %><%= user.last_name %> <%= user.first_name %><% end %></td>
