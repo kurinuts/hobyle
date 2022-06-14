@@ -15,7 +15,7 @@
     　  <% if @memory.image.attached? %>
        <%= image_tag @memory.image, size: "400x300" %>
        <% else %>
-       <%= image_tag 'no_image', size: "400x300" %>
+       <%= image_tag asset_path('noimage'), size: "400x300" %>
        <% end %>
     </div>
   </div>
