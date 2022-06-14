@@ -32,21 +32,21 @@
     <div class="row">
       <div class="col-md-4">
         <div class="list-1">
-          <%= image_tag 'event', size: "200x200" %>
+          <%#= image_tag 'event', size: "200x200" %>
           <%= link_to events_path, class: "btn btn-outline-warning btn-block" do %>
           <strong>近日開催のイベント</strong><% end %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="list-2">
-          <%= image_tag 'memories', size: "200x200" %><br>
+          <%= image_tag asset_path('memories.jpg'), size: "200x200" %><br>
           <%= link_to memories_path, class: "btn btn-outline-warning btn-block" do %>
           <strong>みんなの趣味活</strong><% end %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="list-3">
-          <%= image_tag 'スケジュール', size: "200x200" %><br>
+          <%= image_tag asset_path('schedule.jpg'), size: "200x200" %><br>
           <%= link_to new_event_path, class: "btn btn-outline-warning btn-block" do %>
           <strong>趣味活イベントを企画</strong><% end %>
         </div>
