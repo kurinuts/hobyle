@@ -12,6 +12,6 @@ Admin.create!(
 
 admin = Admin.first
 
-Genre.create!(name: "アウトド", admin_id: admin.id)
+Genre.create!(name: "アウトドア", admin_id: admin.id)
 Genre.create!(name: "インドア", admin_id: admin.id)
 Genre.create!(name: "スポーツ", admin_id: admin.id)
