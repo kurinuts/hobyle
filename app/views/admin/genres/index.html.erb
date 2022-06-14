@@ -5,7 +5,7 @@
       <div class="new-genres">
         <%= form_with model: Genre.new, url: admin_genres_path do |f| %>
         <%= f.text_field :name %>
-        <%= f.submit '投稿' %>
+        <input class="radius-percent" type="submit" value="投稿">
         <% end %>
       </div>
     </div>
@@ -59,4 +59,18 @@ img {
   display: block;
   list-style:none;
 }
+
+.radius-percent {
+  background-color: darkkhaki;
+  color: lemonchiffon;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+}
+
+ .radius-percent:active {
+   transform: translateY(2px);
+ }
 </style>

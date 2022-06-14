@@ -22,7 +22,7 @@
           <%= f.text_field :name %>
           <%= f.hidden_field :genre_id, :value => @genre.id %>
           </th>
-          <th><%= f.submit '追加' %><% end %></th>
+          <th><input class="radius-percent" type="submit" value="追加"><% end %></th>
         </tr>
         <tr>
           <% @secondgenres.each do |secondgenre| %>
@@ -56,5 +56,18 @@
     text-align: center;
     width: 76%;
   }
+  
+  .radius-percent {
+  background-color: darkkhaki;
+  color: lemonchiffon;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+}
 
+ .radius-percent:active {
+   transform: translateY(2px);
+ }
 </style>
