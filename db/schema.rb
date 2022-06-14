@@ -102,18 +102,6 @@ ActiveRecord::Schema.define(version: 2022_05_28_081753) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reservationcs", force: :cascade do |t|
-    t.string "name"
-    t.datetime "start_time"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "schedules", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "secondgenres", force: :cascade do |t|
     t.integer "genre_id"
     t.string "name"

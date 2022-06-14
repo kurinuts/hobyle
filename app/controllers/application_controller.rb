@@ -5,9 +5,11 @@ class ApplicationController < ActionController::Base
   def main_visual
     @users = User.all
     @events = Event.all.order(created_at: :desc)
+
     @events_outdoor = Event.where(genre_id: Genre.find_by(name: "アウトドア").id).order(created_at: :desc).limit(2)
     @events_indoor = Event.where(genre_id: Genre.find_by(name: "インドア").id).order(created_at: :desc).limit(2)
     @events_sport = Event.where(genre_id: Genre.find_by(name: "スポーツ").id).order(created_at: :desc).limit(2)
+
     # .limit(1)
     # @genre = @event.genre
     # @event1 = Event.where(genre_id: @genre.id)

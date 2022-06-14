@@ -9,3 +9,9 @@ Admin.create!(
    email: '1111@gmail.com',
    password: '12345678',
 )
+
+admin = Admin.first
+
+Genre.create!(name: "アウトド", admin_id: admin.id)
+Genre.create!(name: "インドア", admin_id: admin.id)
+Genre.create!(name: "スポーツ", admin_id: admin.id)
