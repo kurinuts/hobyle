@@ -42,7 +42,7 @@
       <% if event.user.image.attached? %>
       <%= link_to user_path(event.user),class: "link" do %><%= image_tag event.user.image, size: "30x30" %><% end %>
       <% else %>
-      <%= link_to user_path(event.user),class: "link" do %><%= image_tag 'no_image', size: "30x30" %><% end %>
+      <%= link_to user_path(event.user),class: "link" do %><%= image_tag asset_path('noimage.jpg', size: "30x30" %><% end %>
       <% end %><br>
       <% if user_signed_in? %>
       <strong><%= link_to user_path(event.user),class: "link" do %><%= event.user.user_name %><% end %></strong></td>
