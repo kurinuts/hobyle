@@ -52,7 +52,7 @@
               <% if @event_user.user.image.attached? %>
               <%= image_tag @event_user.user.image, size: "100x100" %>
               <% else %>
-              <%= image_tag 'no_image', size: "100x100" %>
+              <%= image_tag asset_path('noimage.jpg'), size: "100x100" %>
               <% end %>
 
             </td>

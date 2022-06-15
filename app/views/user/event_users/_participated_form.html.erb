@@ -2,11 +2,27 @@
 <% if event_user.status == "application" && event_user.event.user_id == current_user.id %>
   <%= form_with model: event_user, url: event_user_path(event_user.id), method: :patch, local: false do |f| %>
     <%= f.hidden_field :status, value: "participated" %>
-    <%= f.submit "参加許可", class: "btn btn-info" %>
+    <input class="radius-percent" type="submit" value="参加許可">
   <% end %>
 <% elsif event_user.status == "participated" && event_user.event.user_id == current_user.id %>
   <%= form_with model: event_user, url: event_user_path(event_user), method: :patch, local: false do |f| %>
   <%= f.hidden_field :status, value: "memory" %>
-  <%= f.submit "参加済み", class: "btn btn-info" %>
+  <input class="radius-percent" type="submit" value="参加済み">
   <% end %>
 <% end %>
+<style>
+.radius-percent {
+  background-color: darkkhaki;
+  color: lemonchiffon;
+  border: none;
+  border-bottom: solid 3px gray;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px lightgray;
+  transition: 0.2s;
+}
+
+.radius-percent:active {
+  transform: translateY(2px);
+}
+
+</style>
