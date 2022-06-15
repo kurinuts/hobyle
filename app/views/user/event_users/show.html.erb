@@ -69,11 +69,13 @@
             <td><%= @event_users.sum(:member_count)+1  %>人</td>
           </tr>
         </table>
-        
+        <% if @user %>
         <h6><strong>あなたのコメント▼</strong></h6>
           <div style="padding: 10px; margin-bottom: 10px; border: 1px dotted darkkhaki; border-radius: 5px;">
             <h6><strong><%= @event_user.application_comment %></strong></h6>
           </div>
+        <% else %>
+        <% end %>
         <% else %>
         <table class="table", border=1 frame="box">
           <tr><h1> </h1></tr>
