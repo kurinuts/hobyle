@@ -85,19 +85,19 @@ text-align: center;
         var url =  gon.root + "?q=" + text
 
         $.ajax({
-              url: url,
-              dataType: "json",
-              success: function(data) {
-
-
-$('#event_secondgenre_id').children().remove();
- $('#event_secondgenre_id').append($("<option>").text("選択してください"));
-
-$.each(data, function(index, val) {
-
-
-  $('#event_secondgenre_id').append($("<option>").val(val.genre_id).text(val.name));
-});
+                url: url,
+                dataType: "json",
+                success: function(data) {
+                  console.log(data)
+    
+                  $('#event_secondgenre_id').children().remove();
+                  
+                  $('#event_secondgenre_id').append($("<option>").text("選択してください"));
+                  
+                  $.each(data, function(index, val) {
+                    
+                    $('#event_secondgenre_id').append($("<option>").val(val.genre_id).text(val.name));
+                });
 
               },
               error: function(data) {

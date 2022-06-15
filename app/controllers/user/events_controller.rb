@@ -5,11 +5,17 @@ class User::EventsController < ApplicationController
     @genres = Genre.all
     @secondgenres = Secondgenre.all
     #gon.root = ENV["root"]
+    if Rails.env.development?#開発環境だけ表示されるよ
     gon.root = "https://dad48620747045c19b906ef4dcfc1a1b.vfs.cloud9.us-east-1.amazonaws.com/subgenre"
+    else
+    gon.root = 'http://75.101.221.123/subgenre'
+    end
   end
 
   def subgenre
      genre = Genre.find_by(name: params[:q])
+
+
      @subgenres = genre.secondgenres
      render json: @subgenres
   end
