@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_081753) do
     t.integer "user_id"
     t.integer "event_id"
     t.integer "member_count", default: 1, null: false
-    t.text "application_comment", default: "よろしくお願いします！"
+    t.text "application_comment", default: "よろしくお願いします！", null: false
     t.text "cancel_comment"
     t.string "applicated_title"
     t.text "applipated_comment"
