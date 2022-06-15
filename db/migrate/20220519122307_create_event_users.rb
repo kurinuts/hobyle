@@ -6,7 +6,7 @@ class CreateEventUsers < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.integer :event_id
       t.integer :member_count, null: false, default: 1
-      t.text :application_comment, null: false, default: "よろしくお願いします！"
+      t.text :application_comment, null: false
       t.text :cancel_comment
       t.string :applicated_title
       t.text :applipated_comment
