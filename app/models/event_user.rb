@@ -4,4 +4,6 @@ class EventUser < ApplicationRecord
   has_many :memories, dependent: :destroy
 
   enum status: { application: 0, participated: 1, memory: 2 }
+  
+  attribute :application_comment, :text, default: 'よろしくお願いします！'
 end
