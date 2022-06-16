@@ -26,6 +26,7 @@ class User::EventUsersController < ApplicationController
     @event_user = EventUser.find(params[:id])
     @event_users = EventUser.where(event_id: @event_user.event_id).where.not(user_id: current_user.id)
     @user = @event_user.event.user
+    @event = Event.find(params[:id])
     @sum = 0
   end
 
