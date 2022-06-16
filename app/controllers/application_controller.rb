@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :main_visual
+
   def main_visual
     @users = User.all
     @events = Event.all.order(created_at: :desc)
