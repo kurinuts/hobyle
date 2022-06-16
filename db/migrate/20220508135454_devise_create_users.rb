@@ -16,7 +16,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :user_name
       t.string :last_name
       t.string :first_name
-      t.integer :phone_number
+      t.string :phone_number
       t.string :address_free
       t.string :address
       t.string :user_introduction, default: "初めまして！"
