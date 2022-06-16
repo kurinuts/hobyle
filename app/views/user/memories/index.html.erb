@@ -13,9 +13,9 @@
         <div class="">
           <h6 class="p-1"><strong><%= memory.event.title %></strong></h6>
           <% if memory.image.attached? %>
-          <%= link_to memory_path(memory) do %><%= image_tag memory.image, size: "190x150" %><% end %>
+          <%= link_to memory_path(memory) do %><%= image_tag memory.image, size: "170x140" %><% end %>
           <% else %>
-          <%= image_tag 'no_image', size: "190x150" %>
+          <%= image_tag asset_path('noimage.jpg'), size: "170x140" %>
           <% end %>
           <div class="link py-1">
             <h8><%= link_to memory_path(memory),class: "link" do %>
