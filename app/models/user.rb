@@ -8,6 +8,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum age: { age20: 1, age30: 2,  age40: 3, age50: 4, age60: 5, age70: 6, age80: 7 }
-
 end
