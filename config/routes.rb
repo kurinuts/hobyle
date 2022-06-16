@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     # patch 'withdraw/:id' => 'customers#withdraw', as: 'withdraw_customer'
     # put 'withdraw/:id' => 'customers#withdraw'
     end
-
+    
   root to: 'homes#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
