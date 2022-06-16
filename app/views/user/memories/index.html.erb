@@ -10,7 +10,7 @@
       <% end %>
       <div class="flex">
         <% @memories.each do |memory| %>
-        <div class="">
+        <div class="flex-box">
           <h6 class="p-1"><strong><%= memory.event.title %></strong></h6>
           <% if memory.image.attached? %>
           <%= link_to memory_path(memory) do %><%= image_tag memory.image, size: "170x140" %><% end %>
@@ -27,7 +27,6 @@
               <% end %>
             </h8>
           </div>
-
         </div>
         <% end %>
       </div>
