@@ -125,13 +125,13 @@
           <% end %>
           <tr>
             <th>人数</th>
-            <td><%= f.number_field :member_count %>
+            <td><%= f.number_field :member_count, placeholder: "必須" %>
             <%= hidden_field_tag :member_count, @event_user.member_count %>
             </td>
           </tr>
           <tr>
             <th>コメント</th>
-            <td><%= f.text_area :application_comment %>
+            <td><%= f.text_area :application_comment, placeholder: "必須" %>
             <%= hidden_field_tag :application_comment, @event_user.application_comment  %>
             </td>
           </tr>

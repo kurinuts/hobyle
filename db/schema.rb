@@ -69,14 +69,14 @@ ActiveRecord::Schema.define(version: 2022_05_28_081753) do
     t.integer "genre_id"
     t.integer "user_id"
     t.integer "secondgenre_id"
-    t.string "title"
-    t.datetime "daytime"
-    t.integer "all_time"
-    t.text "introduction"
-    t.integer "limit_number"
-    t.string "place"
-    t.integer "fee"
-    t.string "preparation"
+    t.string "title", null: false
+    t.datetime "daytime", null: false
+    t.integer "all_time", null: false
+    t.text "introduction", null: false
+    t.integer "limit_number", null: false
+    t.string "place", null: false
+    t.integer "fee", null: false
+    t.string "preparation", null: false
     t.string "remarks"
     t.string "second_remarks"
     t.string "question"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_081753) do
   create_table "genres", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
+    t.string "name", null: false
     t.integer "admin_id"
   end
 
@@ -104,24 +104,24 @@ ActiveRecord::Schema.define(version: 2022_05_28_081753) do
 
   create_table "secondgenres", force: :cascade do |t|
     t.integer "genre_id"
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "12345@docomo.ne.jp", null: false
+    t.string "email", null: false
     t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "user_name"
-    t.string "last_name"
-    t.string "first_name"
-    t.string "phone_number"
-    t.string "address_free"
-    t.string "address"
-    t.string "user_introduction", default: "初めまして！"
+    t.string "user_name", null: false
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "phone_number", null: false
+    t.string "address_free", null: false
+    t.string "address", null: false
+    t.string "user_introduction", default: "初めまして！", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
