@@ -26,5 +26,4 @@ class ApplicationController < ActionController::Base
   def top
     @user = current_user
   end
-
 end

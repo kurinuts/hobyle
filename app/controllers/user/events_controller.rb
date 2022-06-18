@@ -1,23 +1,21 @@
 class User::EventsController < ApplicationController
-
   def new
     @event = Event.new
     @genres = Genre.all
     @secondgenres = Secondgenre.all
-    #gon.root = ENV["root"]
-    if Rails.env.development?#開発環境だけ表示されるよ
-    gon.root = "https://dad48620747045c19b906ef4dcfc1a1b.vfs.cloud9.us-east-1.amazonaws.com/subgenre"
+    # gon.root = ENV["root"]
+    if Rails.env.development? # 開発環境だけ表示されるよ
+      gon.root = "https://dad48620747045c19b906ef4dcfc1a1b.vfs.cloud9.us-east-1.amazonaws.com/subgenre"
     else
-    gon.root = 'http://75.101.221.123/subgenre'
+      gon.root = 'http://75.101.221.123/subgenre'
     end
   end
 
   def subgenre
-     genre = Genre.find_by(name: params[:q])
+    genre = Genre.find_by(name: params[:q])
 
-
-     @subgenres = genre.secondgenres
-     render json: @subgenres
+    @subgenres = genre.secondgenres
+    render json: @subgenres
   end
 
   def create
@@ -42,13 +40,13 @@ class User::EventsController < ApplicationController
     # @event.event_user.memmber_count += params[:event][:event_user][:member_count].to_i
     if admin_signed_in?
       @event_user = EventUser.new
-      #参加していたらイベントユーザーに飛ぶ
+      # 参加していたらイベントユーザーに飛ぶ
     elsif @event.event_users.exists?(user_id: current_user.id)
       @event_user = @event.event_users.find_by(user_id: current_user.id)
     else
-      #参加していなかったら、new（新規）に
-    @event_user = EventUser.new
-    # @secondgenre = @event.secondgenre_id
+      # 参加していなかったら、new（新規）に
+      @event_user = EventUser.new
+      # @secondgenre = @event.secondgenre_id
     end
   end
 
@@ -72,9 +70,9 @@ class User::EventsController < ApplicationController
 
   def search
     @q = Genre.ransack(params[:q])
-    @genre = @q.result[0] #配列は０から始まる
+    @genre = @q.result[0] # 配列は０から始まる
     @events = Event.where(genre_id: @genre.id).page(params[:page])
-    render :index #アクションを読まないでほしいからrender使用
+    render :index # アクションを読まないでほしいからrender使用
   end
 
   def active_change
@@ -88,13 +86,13 @@ class User::EventsController < ApplicationController
   end
 
   def destroy
-  @event = Event.find(params[:id])
-  if @event.destroy
-  flash[:notice] = "successfully event_delete"
-  redirect_to events_path
-  else
-  render :index
-  end
+    @event = Event.find(params[:id])
+    if @event.destroy
+      flash[:notice] = "successfully event_delete"
+      redirect_to events_path
+    else
+      render :index
+    end
   end
 
   private

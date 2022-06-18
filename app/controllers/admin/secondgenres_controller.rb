@@ -1,5 +1,4 @@
 class Admin::SecondgenresController < ApplicationController
-
   def new
     @secondgenre = genre.Secondgenre.new
   end
@@ -25,7 +24,7 @@ class Admin::SecondgenresController < ApplicationController
   def update
     @secondgenre = Secondgenre.find(params[:id])
     if @secondgenre.update(secondgenre_params)
-    redirect_to admin_genres_path
+      redirect_to admin_genres_path
     else
       render :show
     end
@@ -34,13 +33,13 @@ class Admin::SecondgenresController < ApplicationController
   def destroy
     @secondgenre = Secondgenre.find(params[:id])
     if @secondgenre.destroy
-    flash[:notice] = "詳細ジャンルの削除に成功しました"
-    redirect_to admin_genres_path
+      flash[:notice] = "詳細ジャンルの削除に成功しました"
+      redirect_to admin_genres_path
     end
   end
 
-
   private
+
   def secondgenre_params
     params.require(:secondgenre).permit(:genre_id, :name)
   end

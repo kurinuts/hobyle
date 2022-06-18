@@ -1,13 +1,13 @@
 class User::UsersController < ApplicationController
-#   def new
-#   @user = User.new
-#   end
+  #   def new
+  #   @user = User.new
+  #   end
 
-#   def create
-#   @user = @user.new(user_params)
-#   @user.save
-#   redirect_to user_path(current_user)
-#   end
+  #   def create
+  #   @user = @user.new(user_params)
+  #   @user.save
+  #   redirect_to user_path(current_user)
+  #   end
 
   def show
     if admin_signed_in?
@@ -40,27 +40,28 @@ class User::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     if @user.save
-    flash[:notice] = "ユーザー情報を更新しました"
-    redirect_to user_path(@user.id)
+      flash[:notice] = "ユーザー情報を更新しました"
+      redirect_to user_path(@user.id)
     else
-    render :edit
+      render :edit
     end
   end
-  
+
   def unsubscribe
-  @user = current_user
+    @user = current_user
   end
 
   def destroy
-    @user = User.find(params[:id]) 
+    @user = User.find(params[:id])
     @user = current_user
     @user.destroy
     flash[:notice] = 'ユーザーを削除しました。'
-    redirect_to :root #削除に成功すればrootページに戻る
+    redirect_to :root # 削除に成功すればrootページに戻る
   end
 
   private
+
   def user_params
-  params.require(:user).permit(:image, :last_name, :first_name, :address_free, :address, :email, :phone_number, :sex, :age, :user_name, :user_introduction)
+    params.require(:user).permit(:image, :last_name, :first_name, :address_free, :address, :email, :phone_number, :sex, :age, :user_name, :user_introduction)
   end
 end

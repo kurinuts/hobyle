@@ -1,5 +1,4 @@
 class User::EventUsersController < ApplicationController
-
   def new
     @event_user = EventUser.new
   end
@@ -34,7 +33,6 @@ class User::EventUsersController < ApplicationController
     @event_users = EventUser.where(user_id: current_user.id)
     @user = current_user
   end
-
 
   def _participated_form
     @event_user = EventUser.find(params[:id])
@@ -79,12 +77,12 @@ class User::EventUsersController < ApplicationController
   private
 
   def event_user_params
-  params.require(:event_user).permit(:user_id, :event_id, :member_count, :application_comment, :cancel_comment, :applicated_title, :applipated_comment, :status)
+    params.require(:event_user).permit(:user_id, :event_id, :member_count, :application_comment, :cancel_comment, :applicated_title, :applipated_comment, :status)
   end
 
   def participated_params
-  params.require(:event_user).permit(:status)
-  #require使うモデルを宣言
-  #どのパラメータを許可するのかを設定
+    params.require(:event_user).permit(:status)
+    # require使うモデルを宣言
+    # どのパラメータを許可するのかを設定
   end
 end

@@ -1,15 +1,14 @@
 class User::MemoriesController < ApplicationController
-
   def new
     @memory = Memory.new
-    event_users = EventUser.where(user_id: current_user.id)
-                            .where(status: 2)
+    event_users = EventUser.where(user_id: current_user.id).
+      where(status: 2)
     # pp @event_users.pluck(:event_id)
     @events = Event.where(id: event_users.pluck(:event_id))
 
-    @events_select = {'参加済みイベント'=>{},'企画したイベント'=>{}}
-    #{ハッシュ型：キー名変えられる(項目名が存在するものとかに利用)
-    #[]配列型：キー名は変えられない・・値（id）だけ選択
+    @events_select = { '参加済みイベント' => {}, '企画したイベント' => {} }
+    # {ハッシュ型：キー名変えられる(項目名が存在するものとかに利用)
+    # []配列型：キー名は変えられない・・値（id）だけ選択
     events = Event.where(id: event_users.pluck(:event_id))
     myEvents = current_user.events
     events.each do |e|
@@ -22,8 +21,8 @@ class User::MemoriesController < ApplicationController
   end
 
   def create
-    event_users = EventUser.where(user_id: current_user.id)
-                            .where(status: 2)
+    event_users = EventUser.where(user_id: current_user.id).
+      where(status: 2)
     @memory = Memory.new(memory_params)
     @memory.user_id = current_user.id
     @memory.event_user_id = current_user.id
@@ -33,9 +32,9 @@ class User::MemoriesController < ApplicationController
       redirect_to memories_path
     else
       @events = Event.where(id: event_users.pluck(:event_id))
-      @events_select = {'参加済みイベント'=>{},'企画したイベント'=>{}}
-      #{ハッシュ型：キー名変えられる(項目名が存在するものとかに利用)
-      #[]配列型：キー名は変えられない・・値（id）だけ選択
+      @events_select = { '参加済みイベント' => {}, '企画したイベント' => {} }
+      # {ハッシュ型：キー名変えられる(項目名が存在するものとかに利用)
+      # []配列型：キー名は変えられない・・値（id）だけ選択
       events = Event.where(id: event_users.pluck(:event_id))
       myEvents = current_user.events
       events.each do |e|
@@ -66,6 +65,6 @@ class User::MemoriesController < ApplicationController
   private
 
   def memory_params()
-  params.require(:memory).permit(:user_id, :event_id, :event_user_id, :title, :comment, :image).merge(user_id: params[:user_id]).merge(event_user_id: params[:event_user_id])
+    params.require(:memory).permit(:user_id, :event_id, :event_user_id, :title, :comment, :image).merge(user_id: params[:user_id]).merge(event_user_id: params[:event_user_id])
   end
 end

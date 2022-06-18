@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-
   devise_for :users, skip: [:passwords], controllers: {
     sessions: 'user/sessions',
-    registrations: 'user/registrations'
+    registrations: 'user/registrations',
   }
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
-    sessions: 'admin/sessions'
+    sessions: 'admin/sessions',
     # passwords: 'admin/passwords',
     # registrations: 'admin/registrations'
   }
@@ -25,12 +24,12 @@ Rails.application.routes.draw do
     get "subgenre" => "events#subgenre"
     get "users/my_events" => "users#my_events"
     get 'unsubscribe' => 'users#unsubscribe', as: 'users_unsubscribe'
-    resources:users
+    resources :users
     resources :memories
     resources :events do
       patch "active_change" => "events#active_change"
-      collection do #idを入れないという意味
-      get 'search', to: 'events#search'
+      collection do # idを入れないという意味
+        get 'search', to: 'events#search'
       end
     end
     resources :event_users
@@ -40,8 +39,8 @@ Rails.application.routes.draw do
     # get 'unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
     # patch 'withdraw/:id' => 'customers#withdraw', as: 'withdraw_customer'
     # put 'withdraw/:id' => 'customers#withdraw'
-    end
-    
+  end
+
   root to: 'homes#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
