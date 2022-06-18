@@ -43,8 +43,39 @@
   <input class="radius-percent" type="submit" value="NEWイベント投稿">
   <% end %>
   <% else %>
-  <h3>新規登録またはログイン後、投稿可能になります</h3>
-  <% end %>
+  <%= form_with model: @event, url: events_path do |f| %>
+  <table class="table">
+    <tr>
+      <th>イベントジャンル</th><td><%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "選択してください") %></td>
+      <th>サブタイプ</th>
+      <td>
+        <%= f.collection_select(:secondgenre_id, [], :id, :name, prompt: "選択してください") %>
+      </td>
+    </tr>
+    <tr>
+      <th>タイトル</th><td><%= f.text_field :title, placeholder: "必須" %></td>
+      <th>紹介コメント</th><td><%= f.text_area :introduction %></td>
+    </tr>
+    <tr>
+      <th>日時</th><td><input type="datetime-local" name="event[daytime]" min="2017-04-01T00:00" max="2023-12-31T23:59" required></td>
+      <th>所要時間</th><td><%= f.number_field :all_time, step: "0.5", min: "0", placeholder: "必須" %> 時間程度</td>
+    </tr>
+    <tr>
+      <th>会費</th><td><%= f.number_field :fee, min: "0", placeholder: "必須" %> 円</td>
+      <th>場所</th><td><%= f.text_area :place, placeholder: "必須" %></td>
+    </tr>
+    <tr>
+      <th>持ち物</th><td><%= f.text_area :preparation, placeholder: "必須" %></td>
+      <th>予定人数</th><td><%= f.number_field :limit_number, min: "0", placeholder: "必須" %> 人</td>
+    </tr></td>
+    </tr>
+    <tr>
+      <th>備考</th><td><%= f.text_area :remarks %></td>
+      <th>＊質問回答</th><td><%= f.text_area :second_remarks, placeholder: "投稿後、質問があった場合はこちらに回答を記入ください" %></td>
+    </tr>
+  </table>
+  <p>新規登録またはログイン後、投稿可能になります</p>
+  <% end %><% end %>
 
 </div>
 <style>
@@ -74,6 +105,10 @@ text-align: center;
 
  .radius-percent:active {
    transform: translateY(2px);
+ }
+
+ p {
+   color: red;
  }
 </style>
 
