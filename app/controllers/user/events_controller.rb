@@ -1,9 +1,8 @@
 class User::EventsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @event = Event.new
     @genres = Genre.all
-    @secondgenres = Secondgenre.all
-    # gon.root = ENV["root"]
     if Rails.env.development? # 開発環境だけ表示されるよ
       gon.root = "https://dad48620747045c19b906ef4dcfc1a1b.vfs.cloud9.us-east-1.amazonaws.com/subgenre"
     else
@@ -35,9 +34,7 @@ class User::EventsController < ApplicationController
     @event = Event.find(params[:id])
     @user = @event.user
     @genre = @event.genre
-    @sum = 0
     @event_users = @event.event_users
-    # @event.event_user.memmber_count += params[:event][:event_user][:member_count].to_i
     if admin_signed_in?
       @event_user = EventUser.new
       # 参加していたらイベントユーザーに飛ぶ
@@ -60,7 +57,6 @@ class User::EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    # byebug
     if @event.update(event_params)
       redirect_to events_path
     else
@@ -77,7 +73,6 @@ class User::EventsController < ApplicationController
 
   def active_change
     @event = Event.find(params[:event_id])
-    # byebug
     if @event.update(update_is_active)
       redirect_to event_path(@event)
     else

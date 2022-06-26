@@ -5,18 +5,12 @@ Rails.application.routes.draw do
   }
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: 'admin/sessions',
-    # passwords: 'admin/passwords',
-    # registrations: 'admin/registrations'
   }
-
-  # get '/my_events' => 'user/events#my_events'
 
   namespace :admin do
     resources :events
-    # resources :sessions
     get "homes" => "homes#top", as: "homes"
     resources :genres
-    resources :secondgenres
     resources :users
   end
 
@@ -34,11 +28,6 @@ Rails.application.routes.draw do
     end
     resources :event_users
     get "event_users/cancel" => "event_users#destroy"
-    # post 'orders/confirm' => 'orders#confirm'
-    # get 'orders/complete' => 'orders#complete'
-    # get 'unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
-    # patch 'withdraw/:id' => 'customers#withdraw', as: 'withdraw_customer'
-    # put 'withdraw/:id' => 'customers#withdraw'
   end
 
   root to: 'homes#top'

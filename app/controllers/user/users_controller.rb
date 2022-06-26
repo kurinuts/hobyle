@@ -1,14 +1,6 @@
 class User::UsersController < ApplicationController
-  #   def new
-  #   @user = User.new
-  #   end
-
-  #   def create
-  #   @user = @user.new(user_params)
-  #   @user.save
-  #   redirect_to user_path(current_user)
-  #   end
-
+  before_action :authenticate_user!
+  
   def show
     if admin_signed_in?
       @event_users = EventUser.new
@@ -20,20 +12,13 @@ class User::UsersController < ApplicationController
       @events = Event.where(user_id: @user.id)
     end
   end
-
-  # def history
-  #   @user = User.find(params[:id])
-  #   @event_users = EventUser.all
-  # end
-
+  
   def edit
-    @user = User.find(params[:id])
     @user = current_user
   end
 
   def my_events
     @events = Event.where(user_id: current_user.id)
-    @event_users = EventUser.where(user_id: current_user.id)
   end
 
   def update
@@ -52,7 +37,6 @@ class User::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user = current_user
     @user.destroy
     flash[:notice] = 'ユーザーを削除しました。'

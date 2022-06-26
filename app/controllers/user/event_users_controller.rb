@@ -21,12 +21,10 @@ class User::EventUsersController < ApplicationController
   end
 
   def show
-    # @members = @event_user.user
     @event_user = EventUser.find(params[:id])
     @event_users = EventUser.where(event_id: @event_user.event_id).where.not(user_id: current_user.id)
     @user = @event_user.event.user
     @event = @event_user.event
-    @sum = 0
   end
 
   def index
@@ -41,16 +39,6 @@ class User::EventUsersController < ApplicationController
   def edit
     @event_user = EventUser.find(params[:id])
   end
-
-  # def update
-  #   @event_user = EventUser.find(params[:id])
-  #   @event_user.update(status: "participated")
-  #   # if @event_user.save
-  #   #   redirect_to event_user_path(@event_user.id)
-  #   # else
-  #   #   render :edit
-  #   # end
-  # end
 
   def update
     @event_user = EventUser.find(params[:id])

@@ -3,7 +3,6 @@ class User::MemoriesController < ApplicationController
     @memory = Memory.new
     event_users = EventUser.where(user_id: current_user.id).
       where(status: 2)
-    # pp @event_users.pluck(:event_id)
     @events = Event.where(id: event_users.pluck(:event_id))
 
     @events_select = { '参加済みイベント' => {}, '企画したイベント' => {} }
@@ -49,7 +48,6 @@ class User::MemoriesController < ApplicationController
 
   def index
     @memories = Memory.order(created_at: :desc).page(params[:page]).per(10)
-    # @event_users = EventUser.where(user_id: current_user.id)
   end
 
   def user_memory_index
